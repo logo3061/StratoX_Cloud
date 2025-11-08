@@ -1,24 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0d47a1">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StratoX</title>
   <meta name="description" content="Details about StratoX">
+  <meta name="theme-color" content="#0d47a1">
+
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/styles.css" />
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
           colors: { brand: '#ffffff', panel: '#ffffff', accent: '#ffffff' },
           boxShadow: { glow: '0 12px 44px rgba(255,255,255,.25)' }
         }
@@ -26,6 +29,7 @@
     };
   </script>
 </head>
+
 <body class="font-sans antialiased text-[var(--text)] selection:bg-indigo-500/30">
 
   <!-- NAV -->
@@ -33,7 +37,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <a href="#" class="flex items-center gap-3">
-          <img src="assets/logo.jpg" class="h-7 w-7" alt="" onerror="this.style.display='none'"/>
+          <img src="assets/logo.jpg" class="h-7 w-7" alt="StratoX Logo" onerror="this.style.display='none'"/>
           <span id="brandTxt" class="text-white text-sm font-semibold tracking-widest">StratoX</span>
         </a>
         <nav class="hidden md:flex items-center gap-8">
@@ -47,62 +51,56 @@
   <!-- HERO -->
   <section id="hero" class="relative h-[94vh] min-h-[600px] w-full">
     <div id="scrollTrigger" class="absolute inset-0"></div>
+
     <div class="absolute inset-0">
       <div class="h-full w-full bg-cover bg-center parallax" style="background-image:url('assets/hero.jpg'); filter: saturate(1.05) contrast(1.1);"></div>
       <div class="absolute inset-0" style="background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.24), transparent 60%), linear-gradient(to bottom, rgba(231, 5, 54, 0.55), rgba(105, 3, 238, 0.9));"></div>
     </div>
+
     <div class="starfield"></div>
+
     <div class="relative z-10 flex h-full items-center">
-      <div class="relative z-10 flex h-full items-center">
-  <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl text-left">
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
-        <span id="heroChunks" data-text="StratoX"></span>
-      </h1>
-      
-      <p class="mt-5 max-w-2xl text-lg text-slate-300">
-        StratoX project by Shadow! StratoX makes and sells high-quality assets and games. We are always happy to help!
-      </p>
-      
-      <div class="mt-8 flex items-center gap-3">
-        <button class="play-btn inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-slate-900 font-semibold hover:bg-white">
-          <span>Join us!</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4l6 4-6 4z"/></svg>
-        </button>
-        <a href="#showcase" class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-white hover:bg-white/10 transition">Discord</a>
+      <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl text-left">
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+            <span id="heroChunks" data-text="StratoX"></span>
+          </h1>
+          <p class="mt-5 max-w-2xl text-lg text-slate-300">
+            StratoX project by Shadow! StratoX makes and sells high-quality assets and games. We are always happy to help!
+          </p>
+          <div class="mt-8 flex items-center gap-3">
+            <button class="play-btn inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-slate-900 font-semibold hover:bg-white">
+              <span>Join us!</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4l6 4-6 4z"/></svg>
+            </button>
+            <a href="#showcase" class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-white hover:bg-white/10 transition">Discord</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<li class="absolute top-80 left-[1010px] w-[175px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
-  <h3 class="text-lg mb-2 font-bold">About</h3>
-  <p class="text-sm font-b text-[var(--text)]/50 break-words">
-    StratoX got <br>
-    founded in <br>
-    2024 <br>
-  </p>
-</li>
-<li class="absolute top-80 left-[1195px] w-[175px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
-  <h3 class="text-lg mb-2 font-bold">Vision</h3>
-  <p class="text-sm font-b text-[var(--text)]/50 break-words">
-    Crafting sleek <br>
-    UIs that <br>
-    actually pop <br>
-  </p>
-</li>
-<li class="absolute top-[450px] left-[1010px] w-[360px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
-  <h3 class="text-lg mb-2 font-bold">Rename</h3>
-  <p class="text-sm font-b text-[var(--text)]/50 break-words">
-    In August 2025, Shadow renamed the group <br>
-    from Paragonia Deepworks to StratoX, <br>
-    unlocking a whole new vision! <br>
-  </p>
-</li>
-
-
-
-    </div>
+    <ul>
+      <li class="absolute top-80 left-[1010px] w-[175px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
+        <h3 class="text-lg mb-2 font-bold">About</h3>
+        <p class="text-sm font-b text-[var(--text)]/50 break-words">
+          StratoX got <br> founded in <br> 2024
+        </p>
+      </li>
+      <li class="absolute top-80 left-[1195px] w-[175px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
+        <h3 class="text-lg mb-2 font-bold">Vision</h3>
+        <p class="text-sm font-b text-[var(--text)]/50 break-words">
+          Crafting sleek <br> UIs that <br> actually pop
+        </p>
+      </li>
+      <li class="absolute top-[450px] left-[1010px] w-[360px] flex flex-col rounded-lg bg-white/20 p-4 text-left font-sfdisplay text-[var(--text)] transition-all duration-[600ms] ease-in-out delay-[1000ms] h-[120px]">
+        <h3 class="text-lg mb-2 font-bold">Rename</h3>
+        <p class="text-sm font-b text-[var(--text)]/50 break-words">
+          In August 2025, Shadow renamed the group <br>
+          from Paragonia Deepworks to StratoX, <br>
+          unlocking a whole new vision!
+        </p>
+      </li>
+    </ul>
   </section>
 
   <!-- PITCH -->
@@ -111,24 +109,27 @@
       <div class="grid gap-10 lg:grid-cols-3 items-start" data-reveal-group>
         <div class="reveal">
           <h2 class="text-3xl font-extrabold tracking-tight">Made to succeed</h2>
-          <p class="mt-4 text-slate-300/90 leading-relaxed">StratoX is a group specialized in realistic and high-quality models and buildings!</p>
+          <p class="mt-4 text-slate-300/90 leading-relaxed">
+            StratoX is a group specialized in realistic and high-quality models and buildings!
+          </p>
           <div class="mt-6 flex gap-3">
             <button class="play-btn inline-flex rounded-lg bg-[var(--accent)] px-4 py-2 text-white font-semibold hover:opacity-95 transition">Join now!</button>
             <a href="#features" class="inline-flex rounded-lg border border-white/10 px-4 py-2 font-semibold hover:bg-white/5">Explore More</a>
           </div>
         </div>
+
         <ul class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-          <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-            <h3 class="text-lg mb-2 font-bold text-[var(--text)]">Realistic</h3>
+          <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+            <h3 class="text-lg mb-2 font-bold">Realistic</h3>
             <p class="text-sm font-medium text-[var(--text)]/70">We are trying to get the most realistic assets possible. With realistic assets and buildings, we make our way to be a great group!</p>
           </li>
-          <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-            <h3 class="text-lg mb-2 font-bold text-[var(--text)]">Projects</h3>
+          <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+            <h3 class="text-lg mb-2 font-bold">Projects</h3>
             <p class="text-sm font-medium text-[var(--text)]/70">One of our newest projects is F-hotel Remake! We are completely remaking the original from FinnTheHuman401</p>
           </li>
-          <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-            <h3 class="text-lg mb-2 font-bold text-[var(--text)]">Products</h3>
-            <p class="text-sm font-medium text-[var(--text)]/70">We are 24/7 working on new products! These products have high-quality UIs and more</p>
+          <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+            <h3 class="text-lg mb-2 font-bold">Products</h3>
+            <p class="text-sm font-medium text-[var(--text)]/70">We are 24/7 working on new products! These products have high-quality UIs and more.</p>
           </li>
         </ul>
       </div>
@@ -143,17 +144,17 @@
         <p class="reveal reveal-slow mt-3 text-slate-300">More information & details about StratoX</p>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-        <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-          <h3 class="text-lg mb-2 font-bold text-[var(--text)]">F-Hotel</h3>
+        <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+          <h3 class="text-lg mb-2 font-bold">F-Hotel</h3>
           <p class="text-sm font-medium text-[var(--text)]/70">This hotel is an official remake of F-Hotel by FinnTheHuman401!</p>
         </li>
-        <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-          <h3 class="text-lg mb-2 font-bold text-[var(--text)]">Lumina</h3>
-          <p class="text-sm font-medium text-[var(--text)]/70">Lumina is our own elevator engine that specializes in efficiency and modularity</p>
+        <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+          <h3 class="text-lg mb-2 font-bold">Lumina</h3>
+          <p class="text-sm font-medium text-[var(--text)]/70">Lumina is our own elevator engine that specializes in efficiency and modularity.</p>
         </li>
-        <li class="flex text-[var(--text)] ease-in-out transition-all duration-[600ms] rounded-lg bg-white/20 p-4 text-left flex-col flex-shrink font-sfdisplay row-span-3 delay-[1000ms]">
-          <h3 class="text-lg mb-2 font-bold text-[var(--text)]">Developers</h3>
-          <p class="text-sm font-medium text-[var(--text)]/70">We currently have a very small team that creates stuff for StratoX. That is why we are searching for more people that are interested in joining our team!</p>
+        <li class="flex flex-col rounded-lg bg-white/20 p-4 text-left transition-all duration-[600ms] ease-in-out">
+          <h3 class="text-lg mb-2 font-bold">Developers</h3>
+          <p class="text-sm font-medium text-[var(--text)]/70">We currently have a small team creating for StratoX — we’re looking for more talented people to join!</p>
         </li>
       </div>
     </div>
@@ -163,7 +164,7 @@
   <section id="showcase" class="py-20" style="background: var(--bg);">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" data-reveal-group>
       <h2 class="reveal text-3xl font-extrabold tracking-tight">Ready to join?</h2>
-      <p class="reveal mt-3 text-slate-300">The group is open to everyone, so feel free to join!</p>
+      <p class="reveal mt-3 text-slate-300">The group is open to everyone — feel free to join!</p>
       <div class="reveal mt-6 flex items-center justify-center gap-3">
         <button class="play-btn inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-100 active:scale-[.98]">Join Now</button>
       </div>
