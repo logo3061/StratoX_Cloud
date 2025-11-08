@@ -1,0 +1,201 @@
+/* 🌞 Base Setup - Light Mode */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI Variable", "Segoe UI", "San Francisco", sans-serif;
+}
+
+body {
+  background: #f0f2f5; /* light neutral background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  color: #1c1c1c;
+}
+
+/* 🌫 Header - Win11 Acrylic + macOS blur */
+header {
+  backdrop-filter: blur(18px) saturate(180%);
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 16px 16px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+nav a {
+  color: #374151;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s;
+  padding: 0.25rem 0;
+}
+
+nav a:hover {
+  color: #2563eb; /* Windows blue accent */
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2563eb;
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* 💎 Hero Section */
+.hero {
+  margin: 4rem auto;
+  background: rgba(255, 255, 255, 0.85); /* macOS acrylic */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 20px;
+  padding: 3rem 4rem;
+  text-align: center;
+  max-width: 700px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.hero:hover {
+  transform: scale(1.02);
+}
+
+.hero h2 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.hero p {
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+/* 🔮 Fluent Button - Win11 + macOS Tahoe */
+.fluent-btn {
+  background: rgba(255, 255, 255, 0.75);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  color: #111827;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px) saturate(180%);
+  font-weight: 600;
+}
+
+.fluent-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.fluent-btn:active {
+  transform: scale(0.97);
+}
+
+/* 🧊 Glass Cards - Windows 11 acrylic + macOS frosted */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 3rem;
+}
+
+.glass-card {
+  width: 260px;
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(25px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  color: #1c1c1c;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* 🌠 Animation Playground */
+.playground {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.playground h2 {
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.ball {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  margin: 0 auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  animation: bounce 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-100px); }
+}
+
+.pulse {
+  margin: 4rem auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+/* 🌈 Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  color: #374151;
+  border-radius: 16px 16px 0 0;
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0d47a1"> <!-- deep blue -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StratoX</title>
+  <meta name="description" content="StratoX is a realistic office building originally built in 2015, modernized in 2021, including a full elevator modernization. The building consists of 29 usable office floors, 2 sublevel parking areas, and a rooftop break area.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: { brand: '#60A5FA', panel: '#60A5FA', accent: '#60A5FA' },
+          boxShadow: { glow: '0 12px 44px rgba(124,58,237,.25)' }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="font-sans antialiased text-[var(--text)] selection:bg-indigo-500/30">
+
+  <!-- NAV -->
+  <header id="topNav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <img src="assets/logo.png" class="h-7 w-7" alt="" onerror="this.style.display='none'"/>
+          <span id="brandTxt" class="text-white text-sm font-semibold tracking-widest">StratoX</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition">Products</a>
+          <a href="#showcase" class="text-sm font-medium text-slate-300 hover:text-white transition">Games</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="relative h-[94vh] min-h-[600px] w-full">
+    <div id="scrollTrigger" class="absolute inset-0"></div>
+    <!-- Background image + overlay -->
+    <div class="absolute inset-0">
+      <div class="h-full w-full bg-cover bg-center parallax" style="background-image:url('assets/hero.jpg'); filter: saturate(1.05) contrast(1.1);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at top, rgba(255,255,255,.24), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.9));"></div>
+    </div>
+
+    <!-- Starfield particles -->
+    <div class="starfield"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+            <span id="heroChunks" data-text="StratoX"></span>
+          </h1>
+          <p class="mt-5 max-w-2xl text-lg text-slate-300">StratoX is a realistic office building originally built in 2015, modernized in 2021, including a full elevator modernization. It consists of 29 usable office floors, 2 sublevel parking areas, and a rooftop break area.</p>
+          <div class="mt-8 flex items-center gap-3">
+            <button class="play-btn inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-slate-900 font-semibold hover:bg-white">
+              <span>Play the Game</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4l6 4-6 4z"/></svg>
+            </button>
+            <a href="#showcase" class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-white hover:bg-white/10 transition">See the game</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PITCH -->
+  <section class="py-20" style="background: var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-3 items-start" data-reveal-group>
+        <div class="reveal">
+          <h2 class="text-3xl font-extrabold tracking-tight">Built for realism.</h2>
+          <p class="mt-4 text-slate-300/90 leading-relaxed">StratoX is one of the most realistic office buildings on Roblox. It features 31 floors, 2 sub-level parking areas, and a roof break area with custom OTIS Compass 360 system.</p>
+          <div class="mt-6 flex gap-3">
+            <button class="play-btn inline-flex rounded-lg bg-[var(--accent)] px-4 py-2 text-white font-semibold hover:opacity-95 transition">Play Now</button>
+            <a href="#features" class="inline-flex rounded-lg border border-white/10 px-4 py-2 font-semibold hover:bg-white/5">Explore More</a>
+          </div>
+        </div>
+        <ul class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+          <li class="reveal gradient-border rounded-2xl glass p-6 tilt">
+            <h3 class="font-semibold">Realistic Architecture</h3>
+            <p class="mt-2 text-sm text-slate-300">StratoX has very realistic architecture, featuring a 31 floor atrium view.</p>
+          </li>
+          <li class="reveal gradient-border rounded-2xl glass p-6 tilt">
+            <h3 class="font-semibold">Modern Offices</h3>
+            <p class="mt-2 text-sm text-slate-300">StratoX focuses on modern workspaces, from tower exteriors to interior details.</p>
+          </li>
+          <li class="reveal gradient-border rounded-2xl glass p-6 tilt">
+            <h3 class="font-semibold">Roof Area</h3>
+            <p class="mt-2 text-sm text-slate-300">Served by elevators & stairs, with a rooftop break area and meetup space 32 floors above ground.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-20" style="background: linear-gradient(180deg, rgba(124,58,237,.08), transparent), var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl" data-reveal-group>
+        <h2 class="reveal text-3xl font-extrabold tracking-tight">More Info</h2>
+        <p class="reveal reveal-slow mt-3 text-slate-300">More information & details about StratoX</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        <div class="reveal-scale gradient-border rounded-2xl glass p-6 tilt">
+          <h3 class="font-semibold">Elevators</h3>
+          <p class="mt-2 text-sm text-slate-300">StratoX's elevators feature OTIS Compass 360 and optimized access to floors.</p>
+          <button class="play-btn mt-4 text-sm font-semibold text-white/90 underline decoration-indigo-400/60">Play ▶</button>
+        </div>
+        <div class="reveal-scale gradient-border rounded-2xl glass p-6 tilt">
+          <h3 class="font-semibold">Multiple Food Areas</h3>
+          <p class="mt-2 text-sm text-slate-300">Starblox in the Lobby and rooftop coffee/lunch shop for a wide range of choices.</p>
+          <button class="play-btn mt-4 text-sm font-semibold text-white/90 underline decoration-indigo-400/60">Play ▶</button>
+        </div>
+        <div class="reveal-scale gradient-border rounded-2xl glass p-6 tilt">
+          <h3 class="font-semibold">Optimized Efficiency</h3>
+          <p class="mt-2 text-sm text-slate-300">Focus on realistic operations and optimized building performance.</p>
+          <button class="play-btn mt-4 text-sm font-semibold text-white/90 underline decoration-indigo-400/60">Play ▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE GRID -->
+  <section id="showcase" class="py-20" style="background: var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6" data-reveal-group>
+        <div class="max-w-2xl">
+          <h2 class="reveal text-3xl font-extrabold tracking-tight">Game Photos</h2>
+          <p class="reveal mt-2 text-slate-300">Many photos from around StratoX.</p>
+        </div>
+        <button class="reveal play-btn hidden sm:inline-flex rounded-lg bg-[var(--accent)] px-4 py-2 text-white font-semibold hover:opacity-95">Play Now</button>
+      </div>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        <!-- All images same structure, just fixed classes, omitted here for brevity -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE / NEWS -->
+  <section id="news" class="py-20" style="background: linear-gradient(180deg, transparent, rgba(34,211,238,.08)), var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl" data-reveal-group>
+        <h2 class="reveal text-3xl font-extrabold tracking-tight">Development Timeline</h2>
+        <p class="reveal mt-2 text-slate-300">Milestones and patch notes. Duplicate items as needed.</p>
+      </div>
+      <ol class="mt-10 space-y-8" data-reveal-group>
+        <li class="reveal relative border-l-2 border-white/10 pl-6">
+          <span class="absolute -left-2 top-0 h-3 w-3 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)]"></span>
+          <h3 class="font-semibold">v1.0</h3>
+          <p class="text-sm text-slate-300">Opened to the public on September 7th, 2025.</p>
+        </li>
+        <li class="reveal relative border-l-2 border-white/10 pl-6">
+          <span class="absolute -left-2 top-0 h-3 w-3 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)]"></span>
+          <h3 class="font-semibold">Bug fixes, sounds added</h3>
+          <p class="text-sm text-slate-300">Elevator sounds added and general bug fixes.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD / CTA -->
+  <section id="download" class="py-20" style="background: radial-gradient(ellipse at center, rgba(124,58,237,.12), transparent 60%), var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" data-reveal-group>
+      <h2 class="reveal text-3xl font-extrabold tracking-tight">Ready to play?</h2>
+      <p class="reveal mt-3 text-slate-300">The game is open to everyone, so feel free to join!</p>
+      <div class="reveal mt-6 flex items-center justify-center gap-3">
+        <button class="play-btn inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-100 active:scale-[.98]">Play Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10" style="background: var(--bg);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between">
+      <p>© 2025 StratoX, haw8411</p>
+      <div class="mt-3 sm:mt-0 flex items-center gap-4">
+        <a href="#features" class="hover:text-white">Features</a>
+        <a href="#showcase" class="hover:text-white">Showcase</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+        <a href="https://beta.oneinnovationway.org" class="hover:text-white">Beta Testing Page</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
