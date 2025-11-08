@@ -48,7 +48,7 @@ document.querySelectorAll('.reveal, .reveal-right, .reveal-scale').forEach(el=>r
 function animateHeroChunks() {
   const container = document.getElementById('heroChunks');
   if (!container) return;
-  const text = container.getAttribute('data-text') || 'StratoX';
+  const text = container.getAttribute('data-text') || 'StratoX by Shadow';
   // Split into word chunks for stronger impact
   const chunks = text.split(' ');
   container.innerHTML = '';
