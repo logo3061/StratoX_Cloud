@@ -59,7 +59,7 @@ function animateHeroChunks() {
     span.textContent = chunk;
     container.appendChild(span);
     // stagger
-    setTimeout(()=>span.classList.add('show'), 220 * idx);
+    setTimeout(()=>span.classList.add('show'), 50 * idx);
   });
 }
 window.addEventListener('load', animateHeroChunks);
