@@ -1,6 +1,6 @@
 
 // Config
-const GAME_URL = "https://www.roblox.com/games/71337099055531/One-Innovation-Way"; // TODO: replace with your game link
+const GAME_URL = "https://discord.gg/47ZPCDSaDE"; // TODO: replace with your game link
 const nav = document.querySelector('#topNav');
 const brand = document.querySelector('#brandTxt');
 
@@ -9,16 +9,13 @@ function setNav() {
   const trig = document.querySelector('#scrollTrigger');
   if (!trig) return;
   const rect = trig.getBoundingClientRect();
-  if (rect.bottom <= 0) {
+
+
     nav.classList.add('nav-scrolled');
     brand.classList.remove('text-white');
-    brand.classList.add('text-slate-200');
-  } else {
-    nav.classList.remove('nav-scrolled');
-    brand.classList.remove('text-slate-200');
-    brand.classList.add('text-white');
-  }
+    brand.classList.add('text-white'); // force black text
 }
+
 document.addEventListener('scroll', setNav, { passive: true });
 window.addEventListener('load', setNav);
 
@@ -34,7 +31,8 @@ const sectionObserver = new IntersectionObserver((entries)=>{
       sectionObserver.unobserve(container);
     }
   });
-},{ threshold: .15 });
+},{ threshold: 0.15 });
+
 
 document.querySelectorAll('[data-reveal-group]').forEach(group=>sectionObserver.observe(group));
 
@@ -50,7 +48,7 @@ document.querySelectorAll('.reveal, .reveal-right, .reveal-scale').forEach(el=>r
 function animateHeroChunks() {
   const container = document.getElementById('heroChunks');
   if (!container) return;
-  const text = container.getAttribute('data-text') || 'ONE INNOVATION WAY';
+  const text = container.getAttribute('data-text') || 'StratoX';
   // Split into word chunks for stronger impact
   const chunks = text.split(' ');
   container.innerHTML = '';
