@@ -15,13 +15,54 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: rgb(var(--text));
-  background: rgba(0,0,0, 1);
-  background-size: cover; /* optional, covers full screen */
-  background-position: center; /* optional */
-  background-repeat: no-repeat; /* optional */
+  background-color: #04030f;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(9, 5, 247, 0.829) 0%, transparent 40%),
+    radial-gradient(circle at 80% 10%, rgb(197, 30, 30) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(0, 180, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0, rgba(255, 0, 0, 0.02) 1px, transparent 2px);
+  background-blend-mode: screen, lighten, overlay, normal;
+  background-size: 200% 200%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  animation: moveGradient 5s ease-in-out infinite alternate;
 }
+@keyframes moveGradient {
+  0% {
+    background-position: 50% 50%, 60% 40%, 50% 70%, 50% 50%, 50% 50%;
+  }
+  50% {
+    background-position: 40% 60%, 70% 50%, 55% 60%, 60% 40%, 45% 55%;
+  }
+  100% {
+    background-position: 60% 40%, 50% 60%, 45% 50%, 55% 60%, 50% 50%;
+  }
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 70%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9Ijc2IiBoZWlnaHQ9Ijc2IiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMzgiIGN5PSIzOCIgcj0iMC4yIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==");
+  background-repeat: repeat;
+  background-size: 76px 76px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
 
 /* background layer for hero */
 .bg-layer {
@@ -149,4 +190,11 @@ body {
 @media (max-width: 640px) {
   .liquid-glass { border-radius: 12px; }
   .action-btn { padding: 0.6rem 1rem; }
+}
+/* subtle animated starfield dots */
+.starfield { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.starfield span {
+  position: absolute; background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 70%);
+  width: 2px; height: 2px; border-radius: 9999px; opacity: .7;
+  animation: twinkle 6s ease-in-out infinite alternate;
 }

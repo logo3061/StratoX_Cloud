@@ -71,7 +71,6 @@ window.addEventListener('scroll', () => {
       }
     });
   });
-
   // ------------------------------
   // Mobile menu toggle
   // ------------------------------
@@ -81,5 +80,21 @@ window.addEventListener('scroll', () => {
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
+  }
+  
+})();
+
+// Generate starfield dots
+(function makeStars(){
+  const field = document.querySelector('.starfield');
+  if(!field) return;
+  const count = 60;
+  for(let i=0; i<count; i++){
+    const s = document.createElement('span');
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*6).toFixed(2) + 's';
+    s.style.opacity = (0.3 + Math.random()*0.7).toFixed(2);
+    field.appendChild(s);
   }
 })();
