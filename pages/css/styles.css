@@ -15,9 +15,10 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: rgb(var(--text));
-  background: url("https://4kwallpapers.com/images/wallpapers/imac-2021-apple-event-2021-stock-purple-background-5k-1920x1080-5258.jpg");
-  background-size: cover;
-  background-position: center;
+  background-image: url('/pages/assets/bg.jpg');
+  background-size: cover; /* optional, covers full screen */
+  background-position: center; /* optional */
+  background-repeat: no-repeat; /* optional */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
