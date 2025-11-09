@@ -1,12 +1,10 @@
 <script>
-  // Simple device check
+  // Check if device is mobile
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   if (isMobile) {
-    // Redirect to mobile version
     window.location.href = "pages/index-mobile.html";
   } else {
-    // Redirect to desktop version
     window.location.href = "pages/index-desktop.html";
   }
 </script>
