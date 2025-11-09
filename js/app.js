@@ -1,101 +1,86 @@
+// js/app.js
+// Scroll reveal + simple parallax + sheen micro-movement
+(() => {
+  // IntersectionObserver for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.classList.add('revealed');
+        // if it is a liquid glass card, also add the 'revealed' to start sheen
+        if (el.classList.contains('liquid-glass') || el.closest('.liquid-glass')) {
+          (el.classList.contains('liquid-glass') ? el : el.closest('.liquid-glass')).classList.add('revealed');
+        }
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
 
-// Config
-const GAME_URL = "https://discord.gg/47ZPCDSaDE"; // TODO: replace with your game link
-const nav = document.querySelector('#topNav');
-const brand = document.querySelector('#brandTxt');
+  reveals.forEach(r => io.observe(r));
 
-// Scroll -> navbar style
-function setNav() {
-  const trig = document.querySelector('#scrollTrigger');
-  if (!trig) return;
-  const rect = trig.getBoundingClientRect();
+  // Hero parallax for background layer using mouse + scroll
+  const hero = document.getElementById('hero');
+  const bg = document.querySelector('.bg-layer');
 
+  // simple scroll parallax:
+  window.addEventListener('scroll', () => {
+    if (!bg) return;
+    const rect = hero.getBoundingClientRect();
+    const pct = Math.min(Math.max((window.innerHeight - rect.top) / (window.innerHeight + rect.height), 0), 1);
+    // translate a little for depth
+    bg.style.transform = `translate3d(0, ${pct * -20}px, 0) scale(${1 + pct * 0.02})`;
+  }, { passive: true });
 
-    nav.classList.add('nav-scrolled');
-    brand.classList.remove('text-white');
-    brand.classList.add('text-white'); // force black text
+  // sheen follow on pointer inside each glass card for micro-interaction
+
+  // Very simple starfield using canvas (subtle)
+  (function starfield() {
+const canvas = document.getElementById('globalStarfield');
+const ctx = canvas.getContext('2d');
+
+let stars = [];
+let w, h;
+
+function initStars() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  stars = [];
+  for(let i = 0; i < 250; i++){ // number of stars
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5,
+      d: Math.random() * 0.5 + 0.1 // speed
+    });
+  }
 }
 
-document.addEventListener('scroll', setNav, { passive: true });
-window.addEventListener('load', setNav);
+function drawStars() {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  stars.forEach(s => {
+    ctx.moveTo(s.x, s.y);
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+  });
+  ctx.fill();
+  moveStars();
+}
 
-// Intersection reveal (stagger per section)
-const sectionObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      const container = entry.target;
-      const items = container.querySelectorAll('.reveal, .reveal-right, .reveal-scale');
-      items.forEach((el, i)=>{
-        setTimeout(()=>el.classList.add('in-view'), 80 * i);
-      });
-      sectionObserver.unobserve(container);
+function moveStars() {
+  stars.forEach(s => {
+    s.y += s.d;
+    if(s.y > h){
+      s.y = 0;
+      s.x = Math.random() * w;
     }
   });
-},{ threshold: 0.15 });
-
-
-document.querySelectorAll('[data-reveal-group]').forEach(group=>sectionObserver.observe(group));
-
-// Generic reveal for standalone elements
-const revealObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('in-view'); revealObserver.unobserve(e.target); }
-  });
-},{ threshold: .12 });
-document.querySelectorAll('.reveal, .reveal-right, .reveal-scale').forEach(el=>revealObserver.observe(el));
-
-// Chunked hero headline animation
-function animateHeroChunks() {
-  const container = document.getElementById('heroChunks');
-  if (!container) return;
-  const text = container.getAttribute('data-text') || 'StratoX™ by Shadow';
-  // Split into word chunks for stronger impact
-  const chunks = text.split(' ');
-  container.innerHTML = '';
-  chunks.forEach((chunk, idx)=>{
-    const span = document.createElement('span');
-    span.className = 'hero-chunk text-white drop-shadow-xl';
-    span.style.marginRight = '0.5ch';
-    span.textContent = chunk;
-    container.appendChild(span);
-    // stagger
-    setTimeout(()=>span.classList.add('show'), 50 * idx);
-  });
+  requestAnimationFrame(drawStars);
 }
-window.addEventListener('load', animateHeroChunks);
 
-// Smooth anchors
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{
-  const target = document.querySelector(a.getAttribute('href'));
-  if(target){ e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
-}));
-
-// Play buttons open the game
-document.querySelectorAll('.play-btn').forEach(btn=>btn.addEventListener('click', ()=>window.open(GAME_URL, '_blank')));
-
-// Optional subtle tilt on pointer move for .tilt containers
-document.querySelectorAll('.tilt').forEach(card=>{
-  card.addEventListener('mousemove', (e)=>{
-    const r = card.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    const rx = ((y / r.height) - 0.5) * -10;
-    const ry = ((x / r.width) - 0.5) * 10;
-    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-  });
-  card.addEventListener('mouseleave', ()=>card.style.transform = '');
-});
-
-// Generate starfield dots
-(function makeStars(){
-  const field = document.querySelector('.starfield');
-  if(!field) return;
-  const count = 60;
-  for(let i=0; i<count; i++){
-    const s = document.createElement('span');
-    s.style.left = Math.random()*100 + '%';
-    s.style.top = Math.random()*100 + '%';
-    s.style.animationDelay = (Math.random()*6).toFixed(2) + 's';
-    s.style.opacity = (0.3 + Math.random()*0.7).toFixed(2);
-    field.appendChild(s);
-  }
+window.addEventListener('resize', initStars);
+initStars();
+drawStars();
+  })();
 })();
