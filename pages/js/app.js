@@ -62,53 +62,6 @@
   });
 
   // ------------------------------
-  // Starfield (canvas animation)
-  // ------------------------------
-  const canvas = document.getElementById('globalStarfield');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-
-    function initStars() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      stars = [];
-      const starCount = window.innerWidth < 768 ? 20 : 50; // fewer stars on mobile
-      for (let i = 0; i < starCount; i++) {
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.5,
-          d: Math.random() * 0.5 + 0.1
-        });
-      }
-    }
-
-    function animateStars() {
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      stars.forEach(s => {
-        ctx.moveTo(s.x, s.y);
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        s.y += s.d;
-        if (s.y > h) {
-          s.y = 0;
-          s.x = Math.random() * w;
-        }
-      });
-      ctx.fill();
-      requestAnimationFrame(animateStars);
-    }
-
-    window.addEventListener('resize', initStars);
-    initStars();
-    animateStars();
-  }
-
-  // ------------------------------
   // Mobile menu toggle
   // ------------------------------
   const btn = document.getElementById('mobile-menu-btn');
