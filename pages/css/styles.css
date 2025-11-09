@@ -15,46 +15,13 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: rgb(var(--text));
-
-  /* Dynamic gradient background */
-  background: linear-gradient(135deg, #6b73ff, #000dff, #ff6b6b, #ffd93d);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-
-  /* Font smoothing */
+  background-image: url('/pages/assets/bg.jpg');
+  background-size: cover; /* optional, covers full screen */
+  background-position: center; /* optional */
+  background-repeat: no-repeat; /* optional */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Full viewport and scrolling */
-  min-height: 100vh;
-  margin: 0;
 }
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Optional subtle overlay for depth, but scrollable now */
-body::after {
-  content: "";
-  position: fixed; /* use fixed so it doesn't block scrolling */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(255,255,255,0.02),
-    rgba(255,255,255,0.02) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  z-index: 0; /* make sure content scrolls above it */
-}
-
 
 /* background layer for hero */
 .bg-layer {
