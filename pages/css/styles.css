@@ -15,7 +15,7 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: rgb(var(--text));
-  background-image: url('/pages/assets/bg.jpg');
+  background: rgba(0,0,0, 1);
   background-size: cover; /* optional, covers full screen */
   background-position: center; /* optional */
   background-repeat: no-repeat; /* optional */
