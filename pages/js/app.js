@@ -46,7 +46,7 @@ function initStars() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
   stars = [];
-  for(let i = 0; i < 250; i++){ // number of stars
+  for(let i = 0; i < 50; i++){ // number of stars
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
