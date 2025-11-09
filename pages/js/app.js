@@ -18,6 +18,17 @@
   }, { threshold: 0.12 });
 
   reveals.forEach(r => io.observe(r));
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      // your scroll-dependent logic here
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
 
   // ------------------------------
   // Hero parallax for background (scroll + mouse)
