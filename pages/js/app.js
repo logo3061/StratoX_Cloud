@@ -83,7 +83,11 @@ window.addEventListener('scroll', () => {
   }
   
 })();
-
+document.querySelectorAll('.action-btn, .join-now, .report-now').forEach(btn => {
+  btn.addEventListener('click', () => {
+    window.open('https://discord.gg/QbbnNPacMZ', '_blank');
+  });
+});
 // Generate starfield dots
 (function makeStars(){
   const field = document.querySelector('.starfield');
