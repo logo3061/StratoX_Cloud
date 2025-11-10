@@ -17,29 +17,28 @@ body {
   color: rgb(var(--text));
   background-color: #04030f;
   background-image: 
+    url("/pages/assets/bg.jpg"),
     radial-gradient(circle at 50% 20%, rgba(9, 5, 247, 0.829) 0%, transparent 40%),
     radial-gradient(circle at 80% 10%, rgb(197, 30, 30) 0%, transparent 40%),
     radial-gradient(circle at 50% 80%, rgba(0, 180, 255, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
     repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0, rgba(255, 0, 0, 0.02) 1px, transparent 2px);
-  background-blend-mode: screen, lighten, overlay, normal;
-  background-size: 200% 200%;
-  background-position: 50% 50%;
+  background-blend-mode: overlay, screen, lighten, normal;
+  background-size: cover, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%;
+  background-position: center, 50% 50%, 80% 10%, 50% 80%, 50% 50%, 50% 50%;
   background-repeat: no-repeat;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  animation: moveGradient 5s ease-in-out infinite alternate;
+  animation: moveGradient 6s ease-in-out infinite alternate;
 }
+
 @keyframes moveGradient {
   0% {
-    background-position: 50% 50%, 60% 40%, 50% 70%, 50% 50%, 50% 50%;
-  }
-  50% {
-    background-position: 40% 60%, 70% 50%, 55% 60%, 60% 40%, 45% 55%;
+    background-position: center, 50% 50%, 80% 10%, 50% 80%, 50% 50%, 50% 50%;
   }
   100% {
-    background-position: 60% 40%, 50% 60%, 45% 50%, 55% 60%, 50% 50%;
+    background-position: center, 55% 40%, 75% 20%, 45% 85%, 50% 55%, 52% 48%;
   }
 }
 body::before {
