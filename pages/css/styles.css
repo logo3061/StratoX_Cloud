@@ -17,7 +17,7 @@ body {
   color: rgb(var(--text));
   background-color: #04030f;
   background-image: 
-    url("/pages/assets/bg.jpg"),
+    url("https://i.ibb.co/FqdR9gTP/bg.jpg");
     radial-gradient(circle at 50% 20%, rgba(9, 5, 247, 0.829) 0%, transparent 40%),
     radial-gradient(circle at 80% 10%, rgb(197, 30, 30) 0%, transparent 40%),
     radial-gradient(circle at 50% 80%, rgba(0, 180, 255, 0.05) 0%, transparent 50%),
