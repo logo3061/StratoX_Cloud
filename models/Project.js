@@ -1,18 +1,14 @@
 const mongoose = require('mongoose');
 
 const ProjectSchema = new mongoose.Schema({
-    id: { type: String, required: true, unique: true }, // e.g., 'the-shafts'
+    id: { type: String, required: true, unique: true }, // z.B. "shafts"
     title: { type: String, required: true },
-    version: { type: String, default: "1.0.0" },
-    status: { 
-        type: String, 
-        enum: ['LIVE', 'ALPHA', 'BETA', 'MAINTENANCE', 'DEV'], 
-        default: 'DEV' 
-    },
-    desc: String,
-    longDesc: String,
-    tags: [String],
-    link: { type: String, default: "Inactive" }
+    version: { type: String, default: "V1.0" },
+    desc: { type: String },
+    longDesc: { type: String },
+    status: { type: String, default: "ALPHA" },
+    link: { type: String, default: "Inactive" },
+    tags: [String]
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);
