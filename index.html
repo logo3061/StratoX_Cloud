@@ -1,10 +1,88 @@
-<script>
-  // Check if device is mobile
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>TEK Studios™ | The Shafts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0a0b0d; color: white; font-family: sans-serif; }
+        .glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-  if (isMobile) {
-    window.location.href = "pages/index-mobile.html";
-  } else {
-    window.location.href = "pages/index-desktop.html";
-  }
-</script>
+    <div class="max-w-2xl w-full">
+        <h1 class="text-4xl font-bold mb-8 italic tracking-tighter">THE SHAFTS <span class="text-blue-500 underline uppercase">Status</span></h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass p-8 rounded-xl border-l-4 border-blue-500">
+                <p class="text-gray-500 text-xs uppercase font-black mb-1">Project Phase</p>
+                <p id="ui-state" class="text-3xl font-black italic">FETCHING...</p>
+            </div>
+            <div class="glass p-8 rounded-xl border-l-4 border-green-500">
+                <p class="text-gray-500 text-xs uppercase font-black mb-1">Obsidian Core</p>
+                <p id="ui-obsidian" class="text-3xl font-black italic text-green-400">FETCHING...</p>
+            </div>
+        </div>
+        <p id="ui-date" class="mt-6 text-[10px] text-gray-600 font-mono uppercase tracking-widest"></p>
+    </div>
+
+    <button onclick="document.getElementById('admin').classList.toggle('hidden')" class="fixed bottom-4 right-4 opacity-10 hover:opacity-100 text-[10px] font-bold">ACCESS_TERMINAL</button>
+
+    <div id="admin" class="fixed inset-0 bg-black/95 hidden flex items-center justify-center p-4 z-50">
+        <div class="glass p-8 rounded-2xl max-w-sm w-full border border-blue-500/30">
+            <h2 class="text-xl font-black mb-6 italic tracking-tight">ADMIN_OVERRIDE</h2>
+            <input type="password" id="key" placeholder="Auth Key" class="w-full bg-white/5 border border-white/10 p-3 rounded-lg mb-4 outline-none focus:border-blue-500">
+            
+            <div class="grid grid-cols-2 gap-2 mb-6">
+                <select id="s1" class="bg-gray-900 border border-white/10 p-2 rounded text-sm">
+                    <option value="PRE-ALPHA">PRE-ALPHA</option>
+                    <option value="ALPHA">ALPHA</option>
+                    <option value="BETA">BETA</option>
+                </select>
+                <select id="s2" class="bg-gray-900 border border-white/10 p-2 rounded text-sm">
+                    <option value="OPERATIONAL">OPERATIONAL</option>
+                    <option value="MAINTENANCE">MAINTENANCE</option>
+                    <option value="OFFLINE">OFFLINE</option>
+                </select>
+            </div>
+            
+            <button onclick="sync()" class="w-full bg-blue-600 hover:bg-blue-500 p-3 rounded-lg font-black transition-all">COMMIT CHANGES</button>
+            <button onclick="document.getElementById('admin').classList.add('hidden')" class="w-full mt-4 text-[10px] text-gray-500 font-bold">CLOSE_SESSION</button>
+        </div>
+    </div>
+
+    <script>
+        async function load() {
+            try {
+                const r = await fetch('/api/status');
+                const d = await r.json();
+                document.getElementById('ui-state').innerText = d.state;
+                document.getElementById('ui-obsidian').innerText = d.obsidian;
+                document.getElementById('ui-date').innerText = "Last Database Sync: " + d.lastUpdated;
+            } catch(e) { console.error("Sync failed"); }
+        }
+
+        async function sync() {
+            const adminKey = document.getElementById('key').value;
+            const newState = document.getElementById('s1').value;
+            const newObsidian = document.getElementById('s2').value;
+
+            const r = await fetch('/api/admin/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ adminKey, newState, newObsidian })
+            });
+
+            if(r.ok) { 
+                alert("DATABASE_UPDATED"); 
+                load(); 
+                document.getElementById('admin').classList.add('hidden'); 
+            } else { 
+                alert("ACCESS_DENIED: Invalid Auth Key"); 
+            }
+        }
+        load();
+    </script>
+</body>
+</html>
