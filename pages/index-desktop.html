@@ -8,13 +8,26 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Falls deine Styles.css noch nicht alles abdeckt */
+        .page-view.hidden { display: none; }
+        .fui-GlassNav { backdrop-filter: blur(15px); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; }
+        .fui-GlassCard { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fui-GlassCard:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .nav-link { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; transition: all 0.3s; }
+        .nav-link.active { color: white; }
+        .fui-ActionButton { background: #00A2FF; color: black; padding: 12px 32px; border-radius: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; transition: 0.3s; }
+        .fui-ActionButton:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 162, 255, 0.4); }
+        .grid-bg { position: fixed; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; z-index: -1; background-color: #050505; }
+        body { background-color: #050505; color: white; font-family: 'Montserrat', sans-serif; }
+    </style>
 </head>
 <body>
     <div class="grid-bg"></div>
+
     <header class="fui-GlassNav fixed top-6 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-5xl h-16 flex items-center justify-between px-8">
-        
         <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
-      <img src="assets/logo.png" class="h-9 w-9 sm:h-9 sm:w-9 rounded-lg" alt="StratoX Logo" onerror="this.style.display='none'"/>
+            <img src="assets/logo.png" class="h-9 w-9 rounded-lg" alt="Logo" onerror="this.style.display='none'"/>
             <span class="text-xs font-black tracking-tighter uppercase">TEK STUDIOS™</span>
         </div>
         <nav class="flex gap-8">
@@ -32,216 +45,185 @@
             </p>
             <div class="flex gap-4 justify-center md:justify-start">
                 <button onclick="showPage('games')" class="fui-ActionButton">Browse Games</button>
-                <a href="https://discord.gg/rUGpysHv5j" class="fui-ActionButton-other">Discord</a>
+                <a href="https://discord.gg/rUGpysHv5j" class="px-8 py-3 rounded-xl border border-white/10 font-black uppercase text-xs tracking-widest hover:bg-white/5 transition-all flex items-center">Discord</a>
             </div>
         </div>
     </main>
 
     <main id="page-games" class="page-view hidden pt-44 px-6 max-w-6xl mx-auto pb-20">
         <h2 class="text-4xl font-black italic mb-2 tracking-tighter uppercase">Available Experiences</h2>
-        <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12">Our Experiences</p>
-        
-        <div id="game-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12">Synced via Stratox-Cloud</p>
+        <div id="game-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="text-slate-600 font-mono text-xs animate-pulse">Initializing Cloud Sync...</div>
+        </div>
     </main>
 
-<main id="page-status" class="page-view hidden pt-44 px-6 max-w-5xl mx-auto pb-20">
-    <h2 class="text-4xl font-black italic mb-2 tracking-tighter uppercase text-center md:text-left">Studio News</h2>
-    <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12 text-center md:text-left">Pulse of the Multiverse</p>
-    
-    <div id="news-container" class="flex flex-col gap-4"></div>
-</main>
+    <main id="page-status" class="page-view hidden pt-44 px-6 max-w-5xl mx-auto pb-20">
+        <h2 class="text-4xl font-black italic mb-2 tracking-tighter uppercase">Studio News</h2>
+        <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12">Pulse of the Multiverse</p>
+        <div id="news-container" class="flex flex-col gap-4"></div>
+    </main>
 
     <footer class="py-10 border-t border-white/5 text-center">
         <p class="text-[10px] font-bold text-slate-600 tracking-[0.3em] uppercase mb-4">© 2026 TEK STUDIOS — MULTIVERSE</p>
     </footer>
 
+    <div id="game-modal" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-4 md:p-10">
+        <div class="fui-GlassCard max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-16 relative border-blue-500/20">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-500 hover:text-white font-black uppercase text-[10px] tracking-widest">Close [ESC]</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
     <script>
-        // --- DATA SECTION: Easy to modify/add/remove ---
-        const newsData = [
-    {
-        title: "HUB ALPHA",
-        date: "07.02.2026",
-        desc: "The central command for all TEK Studios experiences is now officially live. Explore our projects through the new interface.",
-        type: "Announcement",
-        status: "Alpha" // Nutzt dein Farbsystem (Live = Blau)
-    },
-];
-        const games = [
-{
-        id: "the-shafts",
-        title: "THE SHAFTS",
-        version: "V1.2 ALPHA",
-        desc: "The endless mineshafts",
-        longDesc: "The Shafts is a procedural vertical descent experience. Navigate through infinite levels of brutalist architecture while managing oxygen and avoiding 'Obsidian' entities. Every floor is uniquely generated to ensure total unpredictability.",
-        tags: ["Realism", "Chaos", "Horror"],
-        status: "Pre-Alpha",
-        link: "Inactive"
-    },
-    {
-        id: "the-hotel",
-        title: "TEK HOTELS",
-        version: "V3",
-        desc: "The remake of F-Hotel",
-        longDesc: "TEK Studios remade the original F-Hotel from FinnTheHuman401!",
-        tags: ["Realism", "Chaos", "Horror"],
-        status: "Maintenance",
-        link: "Inactive"
-    },
-        ];
-function renderNews() {
-    const newsContainer = document.getElementById('news-container');
-    if (!newsContainer) return;
-
-    newsContainer.innerHTML = newsData.map(news => `
-        <div class="fui-GlassCard p-8 mb-4 border-l-4 ${
-            news.status === 'Live' ? 'border-l-[#00A2FF]' : 
-            news.status === 'Alpha' ? 'border-l-orange-500' : 
-            news.status === 'Maintenance' ? 'border-l-red-500' : 
-            'border-l-slate-600'
-        }">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[9px] font-black uppercase tracking-[0.3em] ${
-                        news.status === 'Live' ? 'text-[#00A2FF]' : 
-                        news.status === 'Beta' ? 'text-emerald-400' : 
-                        news.status === 'Alpha' ? 'text-orange-500' : 
-                        news.status === 'Pre-Alpha' ? 'text-yellow-400' : 
-                        news.status === 'Dev' ? 'text-purple-500' : 
-                        news.status === 'Maintenance' ? 'text-red-500' : 
-                        'text-slate-500'
-                    }">${news.type}</span>
-                    <h3 class="text-2xl font-black italic tracking-tighter uppercase mt-1">${news.title}</h3>
-                </div>
-                <span class="text-[10px] font-mono text-slate-600">${news.date}</span>
-            </div>
-            <p class="text-sm text-slate-400 leading-relaxed max-w-3xl">${news.desc}</p>
-        </div>
-    `).join('');
-}
-        // --- RENDER LOGIC ---
-      // --- MODAL LOGIC ---
-function openModal(gameId) {
-    const game = games.find(g => g.id === gameId);
-    if (!game) return;
-
-    const content = document.getElementById('modal-content');
-    content.innerHTML = `
-        <div class="mb-10">
- <div class="flex justify-between items-start mb-6">
-                    <div class="mb-6">
-                        <div class="w-10 h-1 mb-2 ${
-        game.status === 'Live' ? 'bg-[#00A2FF]' : 
-        game.status === 'Beta' ? 'bg-emerald-400' : 
-        game.status === 'Alpha' ? 'bg-orange-500' : 
-        game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
-        game.status === 'Dev' ? 'bg-purple-500' : 
-        game.status === 'Maintenance' ? 'bg-red-500' : 
-                            'bg-slate-600'
-                        }"></div>
-                        <span class="text-[9px] font-mono uppercase tracking-widest block text-slate-500 group-hover:text-white transition-colors">
-                            ${game.status}
-                        </span>
-                    </div>
-                    <span class="text-[14px] font-mono text-slate-500 uppercase tracking-widest">${game.version}</span>
-                </div>
-            <span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.4em] block mb-2">${game.status} | ${game.version}</span>
-            <h2 class="text-5xl md:text-7xl font-black italic italic tracking-tighter uppercase">${game.title}</h2>
-        </div>
+        // --- CONFIGURATION ---
+        const API_URL = "https://stratox-cloud.onrender.com/api/projects";
         
-        <div class="grid md:grid-cols-2 gap-12">
-            <div>
-                <p class="text-slate-400 leading-relaxed text-lg mb-8">${game.longDesc || game.desc}</p>
-                <div class="flex flex-wrap gap-2">
-                    ${game.tags.map(tag => `<span class="px-3 py-1 bg-white/5 rounded text-[10px] font-black uppercase text-slate-400 border border-white/5">${tag}</span>`).join('')}
-                </div>
-            </div>
-            <div class="space-y-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Development Status</h4>
-                    <p class="text-sm">This project is currently in <b class="text-white">${game.status}</b>. Features are subject to change during the development cycle.</p>
-                </div>
-                <button 
-                    ${game.link === 'Inactive' ? 'disabled' : `onclick="window.location.href='${game.link}'"`}
-                    class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all 
-                    ${game.link === 'Inactive' ? 'bg-white/5 text-slate-700 cursor-not-allowed' : 'bg-[#00A2FF] text-black hover:scale-[1.02]'}">
-                    ${game.link === 'Inactive' ? 'Unavailable' : 'Launch Experience'}
-                </button>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('game-modal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Scrollen verhindern
-}
+        // Lokale Fallback-Daten (falls API nicht erreichbar)
+        let games = [
+            {
+                id: "shafts",
+                title: "THE SHAFTS",
+                version: "V1.2 ALPHA",
+                desc: "Connecting to Cloud...",
+                longDesc: "Attempting to sync with Stratox-Cloud. Please refresh if this takes too long.",
+                tags: ["Syncing"],
+                status: "Dev",
+                link: "Inactive"
+            }
+        ];
 
-function closeModal() {
-    document.getElementById('game-modal').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-}
+        const newsData = [
+            {
+                title: "STRATOX CLOUD ACTIVE",
+                date: "07.02.2026",
+                desc: "The HUB is now communicating with the Render backend. Project states are updated in real-time.",
+                type: "System",
+                status: "Live"
+            }
+        ];
 
-// Schließen mit ESC-Taste
-document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeModal(); });
+        // --- CLOUD SYNC LOGIC ---
+        async function fetchLiveStatus() {
+            try {
+                console.log("[SYSTEM] Fetching from Stratox Cloud...");
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("Cloud Offline");
+                
+                const cloudData = await response.json();
+                if (cloudData && cloudData.length > 0) {
+                    games = cloudData;
+                    renderGames();
+                    console.log("[SYSTEM] Sync Complete.");
+                }
+            } catch (err) {
+                console.warn("[SYSTEM] Cloud Sync failed, using local buffer.", err);
+                renderGames();
+            }
+        }
 
-// --- RENDER LOGIC UPDATE ---
-function renderGames() {
-    const grid = document.getElementById('game-grid');
-    grid.innerHTML = games.map(game => `
-        <div onclick="openModal('${game.id}')" class="fui-GlassCard p-8 flex flex-col justify-between cursor-pointer group">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <div class="mb-6">
-                        <div class="w-10 h-1 mb-2 ${
-        game.status === 'Live' ? 'bg-[#00A2FF]' : 
-        game.status === 'Beta' ? 'bg-emerald-400' : 
-        game.status === 'Alpha' ? 'bg-orange-500' : 
-        game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
-        game.status === 'Dev' ? 'bg-purple-500' : 
-        game.status === 'Maintenance' ? 'bg-red-500' : 
-                            'bg-slate-600'
-                        }"></div>
-                        <span class="text-[9px] font-mono uppercase tracking-widest block text-slate-500 group-hover:text-white transition-colors">
+        // --- RENDER LOGIC ---
+        function renderGames() {
+            const grid = document.getElementById('game-grid');
+            if(!grid) return;
+            
+            grid.innerHTML = games.map(game => `
+                <div onclick="openModal('${game.id}')" class="fui-GlassCard p-8 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="w-10 h-1 mb-2 ${getStatusColor(game.status)}"></div>
+                        <span class="text-[9px] font-mono uppercase tracking-widest block text-slate-500 group-hover:text-white transition-colors mb-4">
                             ${game.status}
                         </span>
+                        <h3 class="text-2xl font-black mb-3 italic tracking-tighter group-hover:text-[#00A2FF] transition-colors">${game.title}</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">${game.desc}</p>
+                        <div class="flex gap-2 mb-8">
+                            ${(game.tags || []).map(tag => `<span class="px-2 py-1 bg-white/5 rounded text-[8px] font-black uppercase text-slate-500">${tag}</span>`).join('')}
+                        </div>
                     </div>
-                    <span class="text-[14px] font-mono text-slate-500 uppercase tracking-widest">${game.version}</span>
+                    <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest text-center">Click for details</p>
                 </div>
-                <h3 class="text-2xl font-black mb-3 italic tracking-tighter group-hover:text-[#00A2FF] transition-colors">${game.title}</h3>
-                <p class="text-sm text-slate-400 leading-relaxed mb-6">${game.desc}</p>
-                <div class="flex gap-2 mb-8">
-                    ${game.tags.map(tag => `<span class="px-2 py-1 bg-white/5 rounded text-[8px] font-black uppercase text-slate-500">${tag}</span>`).join('')}
-                </div>
-            </div>
-            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest text-center">Click for details</p>
-        </div>
-    `).join('');
-}
+            `).join('');
+        }
 
-        // --- PAGE SWITCHER ---
+        function getStatusColor(status) {
+            const s = status ? status.toUpperCase() : '';
+            if (s === 'LIVE') return 'bg-[#00A2FF]';
+            if (s === 'BETA') return 'bg-emerald-400';
+            if (s === 'ALPHA') return 'bg-orange-500';
+            if (s === 'MAINTENANCE') return 'bg-red-500';
+            return 'bg-slate-600';
+        }
+
+        // --- MODAL LOGIC ---
+        function openModal(gameId) {
+            const game = games.find(g => g.id === gameId);
+            if (!game) return;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="mb-10">
+                    <div class="w-16 h-1 mb-4 ${getStatusColor(game.status)}"></div>
+                    <span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.4em] block mb-2">${game.status} | ${game.version}</span>
+                    <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter uppercase">${game.title}</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <p class="text-slate-400 leading-relaxed text-lg mb-8">${game.longDesc || game.desc}</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                            <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Cloud Verified Status</h4>
+                            <p class="text-sm">Status: <b class="text-white">${game.status}</b></p>
+                            <p class="text-xs text-slate-500 mt-2">Version: ${game.version}</p>
+                        </div>
+                        <button 
+                            ${game.link === 'Inactive' || !game.link ? 'disabled' : `onclick="window.location.href='${game.link}'"`}
+                            class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all 
+                            ${game.link === 'Inactive' || !game.link ? 'bg-white/5 text-slate-700 cursor-not-allowed' : 'bg-[#00A2FF] text-black hover:scale-[1.02]'}">
+                            ${game.link === 'Inactive' || !game.link ? 'Currently Offline' : 'Launch Experience'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('game-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('game-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- NAVIGATION ---
         function showPage(pageId) {
             document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
             const btn = document.getElementById(`btn-${pageId}`);
             if(btn) btn.classList.add('active');
-            window.scrollTo(0,0);
         }
 
-        // Initialize Hub
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = newsData.map(n => `
+                <div class="fui-GlassCard p-8 border-l-4 ${getStatusColor(n.status).replace('bg-', 'border-')}">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-slate-500">${n.type}</span>
+                    <h3 class="text-xl font-black italic uppercase mt-2">${n.title}</h3>
+                    <p class="text-sm text-slate-400 mt-4">${n.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
         window.onload = () => {
-            renderGames();
             renderNews();
-            // Hier kannst du deine bestehende fetchStatus() Funktion einfügen
+            fetchLiveStatus(); // Holt die Daten von Render
+            
+            // Optional: Alle 30 Sekunden neu laden für Echtzeit-Feeling
+            setInterval(fetchLiveStatus, 30000);
         };
-        
+
+        document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeModal(); });
     </script>
-    <div id="game-modal" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-4 md:p-10">
-    <div class="fui-GlassCard max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-16 relative border-blue-500/20">
-        <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-500 hover:text-white font-black uppercase text-[10px] tracking-widest">Close [ESC]</button>
-        
-        <div id="modal-content">
-            </div>
-    </div>
-</div>
 </body>
 </html>
