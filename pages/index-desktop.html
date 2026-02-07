@@ -1,203 +1,328 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-       <div class="starfield"></div>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StratoX™</title>
-  <meta name="description" content="Details about StratoX">
-  <meta name="theme-color" content="#0d47a1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TEK Studios™ | The Shafts</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <style>
+        :root {
+            --fui-ColorBrand: #00A2FF;
+            --fui-Bg: #0d0e12;
+            --fui-Card: rgba(25, 27, 32, 0.9);
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+        body {
+            background: radial-gradient(circle at center, #16181c 0%, #08090a 100%);
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
 
-  <!-- your external stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
+        /* Roblox Grid Pattern */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .fui-GlassNav {
+            background: rgba(15, 16, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .fui-GlassCard {
+            background: var(--fui-Card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .fui-GlassCard:hover {
+            border-color: var(--fui-ColorBrand);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .fui-ActionButton {
+            background: white;
+            color: black;
+            font-weight: 900;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 0 #bcbcbc;
+            transition: all 0.1s active;
+        }
+
+        .fui-ActionButton:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #bcbcbc;
+        }
+
+        .nav-link {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            transition: 0.2s;
+        }
+
+        .nav-link.active { color: var(--fui-ColorBrand); }
+
+        .page-view { transition: opacity 0.4s ease; }
+        .hidden { display: none; opacity: 0; }
+
+        /* Console styling */
+        .terminal-box {
+            background: rgba(0,0,0,0.7);
+            font-family: monospace;
+            color: #00ff88;
+            font-size: 11px;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid rgba(0,255,136,0.1);
+        }
+    </style>
 </head>
+<body>
 
-<body class="font-sans text-white selection:bg-purple-500/30 antialiased">
+    <header class="fui-GlassNav fixed top-6 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-5xl h-16 flex items-center justify-between px-8">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+            <div class="w-8 h-8 bg-[#00A2FF] rounded flex items-center justify-center font-black text-black text-xs shadow-lg">T</div>
+            <span class="text-xs font-black tracking-tighter uppercase">TEK STUDIOS™</span>
+        </div>
+        <nav class="flex gap-8">
+            <button onclick="showPage('home')" id="btn-home" class="nav-link active">Home</button>
+            <button onclick="showPage('systems')" id="btn-systems" class="nav-link">Systems</button>
+            <button onclick="showPage('status')" id="btn-status" class="nav-link">Status</button>
+        </nav>
+    </header>
 
-  <!-- NAV -->
-<header id="topNav" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md bg-white/9 border border-white/5 rounded-xl transition-all duration-500 hover:bg-white/20 hover:shadow-lg w-[90%] max-w-4xl">
-  <div class="flex h-16 items-center justify-between px-6">
-    <a href="#" class="flex items-center gap-3">
-      <img src="assets/logo.jpg" class="h-7 w-7 rounded-lg" alt="StratoX Logo" onerror="this.style.display='none'"/>
-      <span class="text-white text-sm font-semibold tracking-widest">StratoX™</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition">Assets</a>
-      <a href="#showcase" class="text-sm font-medium text-slate-300 hover:text-white transition">Experiences</a>
-      <a href="#bugs" class="text-sm font-medium text-slate-300 hover:text-white transition">Bugs</a>
-    </nav>
-    
-  </div>
-</header>
-
-
-
-
-  <!-- HERO -->
-  <section id="hero" class="relative h-[94vh] min-h-[600px] flex items-center justify-center text-center md:text-left overflow-hidden">
-
-
-    <div class="relative z-10 flex flex-col items-center md:items-start px-6 md:px-12 max-w-5xl">
-      <h1 class="text-5xl sm:text-6xl font-extrabold leading-[1.1] reveal">StratoX™ by Shadow</h1>
-      <p class="mt-5 max-w-2xl text-lg text-slate-200 reveal delay-100">
-        StratoX™ makes and sells high-quality assets and games. We’re always happy to help!
-      </p>
-
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 reveal delay-200">
-        <button href="https://discord.gg/QbbnNPacMZ"class="rounded-xl action-btn .join-now,">Join now!</button>
-      </div>
-
-      <!-- Glass Cards -->
-      <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 w-full">
-        <li class="liquid-glass reveal p-4">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">About</h3>
-          <p class="text-sm text-slate-200/80">StratoX™ got founded in 2024</p>
-        </li>
-
-        <li class="liquid-glass reveal p-4 delay-100">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">Vision</h3>
-          <p class="text-sm text-slate-200/80">Crafting sleek UIs that actually pop</p>
-        </li>
-
-        <li class="liquid-glass reveal p-4 sm:col-span-2 lg:col-span-1 delay-200">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">Rename</h3>
-          <p class="text-sm text-slate-200/80">
-            In August 2025, Shadow renamed the group from Paragonia Deepworks to StratoX™, unlocking a whole new vision!
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PITCH -->
-  <section class="py-20">
-    
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-10 lg:grid-cols-3 items-start">
-        <div>
-          <h2 class="text-3xl font-extrabold reveal">Made to succeed</h2>
-          <p class="mt-4 text-slate-300/90 leading-relaxed reveal delay-100">
-            StratoX™ is a group specialized in realistic and high-quality models and buildings!
-          </p>
-          <div class="mt-6 flex gap-3 flex-wrap reveal delay-200">
-            <a href="#features" class="rounded-xl action-btn">Explore More</a>
-          </div>
+    <main id="page-home" class="page-view pt-44 px-6 max-w-6xl mx-auto pb-20">
+        <div class="text-center md:text-left">
+            <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4">THE SHAFTS</h1>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl font-medium leading-relaxed">
+                A high-fidelity vertical descent experience. Built on the <span class="text-white">Obsidian™</span> engine architecture.
+            </p>
+            <div class="flex gap-4 justify-center md:justify-start">
+                <button onclick="showPage('systems')" class="fui-ActionButton">View Systems</button>
+                <a href="https://discord.gg/QbbnNPacMZ" class="bg-white/5 border border-white/10 px-8 py-3.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-white/10 transition-all">Discord</a>
+            </div>
         </div>
 
-        <ul class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-          <li class="liquid-glass p-4 reveal"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Realistic</h3>
-            <p class="text-sm text-slate-300/80">We aim for maximum realism with every asset and build.</p>
-          </li>
-          <li class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Projects</h3>
-            <p class="text-sm text-slate-300/80">Our newest project is the F-Hotel Remake, a full rework of the original.</p>
-          </li>
-          <li class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Products</h3>
-            <p class="text-sm text-slate-300/80">We work nonstop on new, high-quality products with refined UIs.</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+        <div class="grid md:grid-cols-3 gap-6 mt-32">
+            <div class="fui-GlassCard p-8">
+                <div class="w-10 h-1 bg-[#00A2FF] mb-6"></div>
+                <h3 class="text-xl font-black mb-3 italic">REALISM</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Simulated depth pressure and oxygen systems that react to player movement.</p>
+            </div>
+            <div class="fui-GlassCard p-8">
+                <div class="w-10 h-1 bg-[#00A2FF] mb-6"></div>
+                <h3 class="text-xl font-black mb-3 italic">CHAOS</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Dynamic entity spawning based on "Obsidian" threat-level calculations.</p>
+            </div>
+            <div class="fui-GlassCard p-8">
+                <div class="w-10 h-1 bg-[#00A2FF] mb-6"></div>
+                <h3 class="text-xl font-black mb-3 italic">DESIGN</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Brutalist architecture meets sci-fi horror in a procedurally infinite shaft.</p>
+            </div>
+        </div>
+    </main>
 
-  <!-- FEATURES -->
-  <section id="features" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mb-10">
-        <h2 class="text-3xl font-extrabold reveal">More Info</h2>
-        <p class="mt-3 text-slate-300 reveal delay-100">More information & details about StratoX™</p>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  <div class="liquid-glass p-4 reveal"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">F-Hotel</h3>
-    <p class="text-sm text-slate-300/80">Official remake of F-Hotel by FinnTheHuman401!</p>
-  </div>
-
-  <div class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Lumina™</h3>
-    <p class="text-sm text-slate-300/80">Our own elevator engine built for modularity and efficiency.</p>
-  </div>
-
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Developers</h3>
-    <p class="text-sm text-slate-300/80">We have a small but dedicated team and are always expanding!</p>
-  </div>
-</div>
-
-    </div>
-  </section>
-
-  <!-- SHOWCASE -->
-  <section id="showcase" class="py-20 text-center">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-extrabold reveal">Interested?</h2>
-      <p class="mt-3 text-slate-300 reveal delay-100">Feel free to join!</p>
-      <div class="mt-6 flex justify-center reveal delay-200">
-        <button class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-100 active:scale-[.98]">Join Now</button>
-      </div>
-    </div>
-  </section>
- <!-- Bugs -->
-  <section id="bugs" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mb-10">
-        <h2 class="text-3xl font-extrabold reveal">Bugs</h2>
-        <p class="mt-3 text-slate-300 reveal delay-100">Quick fixes for bugs</p>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <main id="page-systems" class="page-view hidden pt-44 px-6 max-w-6xl mx-auto pb-20">
+        <h2 class="text-4xl font-black italic mb-2">OBSIDIAN™ CORE</h2>
+        <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12">System Architecture & Modularity</p>
         
-  <div class="liquid-glass p-4 reveal"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">TKR Revived Cortex</h3>
-    <p class="text-sm text-slate-300/80">Cortex is not longer supported by TKR Revived. The V2 of TKR Revived will only support MXv2!</p>
-  </div>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div class="fui-GlassCard p-10 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-black mb-4 italic">The Master Script</h3>
+                    <p class="text-slate-400 text-sm leading-7">Unlike traditional spaghetti code, Obsidian uses a single <b>Controller Module</b>. This acts as the brain, broadcasting signals to sub-modules like EntityAI, Soundscape, and GeometryGen.</p>
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/5 text-[10px] font-mono text-[#00A2FF]">TYPE: MODULAR_SYSTEM_V2</div>
+            </div>
+            <div class="space-y-6">
+                <div class="fui-GlassCard p-6 border-l-4 border-l-[#00A2FF]">
+                    <h4 class="font-bold mb-1">Environmental Flux</h4>
+                    <p class="text-xs text-slate-500">Real-time room shifting and lighting occlusion.</p>
+                </div>
+                <div class="fui-GlassCard p-6 border-l-4 border-l-[#00A2FF]">
+                    <h4 class="font-bold mb-1">State Persistence</h4>
+                    <p class="text-xs text-slate-500">Player choices affect future shaft generation logic.</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  <div class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Lumina™</h3>
-    <p class="text-sm text-slate-300/80">This elevator controller isn’t updated with every patch. Larger updates are released periodically.</p>
-  </div>
+    <main id="page-status" class="page-view hidden pt-44 px-6 max-w-5xl mx-auto pb-20">
+        <div class="fui-GlassCard p-12 text-center border-b-4 border-b-[#00A2FF]">
+            <h2 class="text-xs font-black tracking-[0.5em] text-slate-500 mb-6 uppercase">Live Network Feed</h2>
+            <div class="flex flex-col md:flex-row justify-around gap-12">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-600 mb-2 uppercase">Current Phase</p>
+                    <p id="ui-state" class="text-4xl font-black italic">--</p>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold text-slate-600 mb-2 uppercase">Obsidian Status</p>
+                    <p id="ui-obsidian" class="text-4xl font-black italic">--</p>
+                </div>
+            </div>
+            <p id="ui-updated" class="mt-12 text-[9px] font-mono text-slate-600 uppercase tracking-widest">Awaiting Link...</p>
+        </div>
+    </main>
 
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Games</h3>
-    <p class="text-sm text-slate-300/80">Bugs could happen in our games as we have a small developer team</p>
-  </div>
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">ICP</h3>
-    <p class="text-sm text-slate-300/80">Our ICP system is only maintained by Shadow. It takes time to fix stuff. At the moment we are completly recoding the base functions of it to prevent future bugs</p>
-  </div>
+    <section id="adminZone" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-3xl flex items-center justify-center p-6">
+        <div id="adminLogin" class="fui-GlassCard p-10 w-full max-w-md text-center">
+            <h2 class="text-2xl font-black italic mb-8 uppercase tracking-tighter">Enter Auth Key</h2>
+            <input type="password" id="adminKey" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 mb-4 text-center text-white focus:border-[#00A2FF] outline-none transition-all" placeholder="••••••••">
+            <button onclick="attemptLogin()" class="fui-ActionButton w-full">Initialize</button>
+            <button onclick="toggleAdmin()" class="mt-6 text-[10px] text-slate-600 font-bold uppercase tracking-widest">Cancel</button>
+        </div>
 
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Other products</h3>
-    <p class="text-sm text-slate-300/80">Report any other bugs in our discord server!</p>
-          <div class="mt-6 flex justify-center reveal delay-200">
-        <button href="https://discord.gg/QbbnNPacMZ"class="rounded-xl action-btn .join-now,">Report now!</button>
-      </div>
-  </div>
-  
-</div>
+        <div id="adminDash" class="hidden w-full max-w-5xl h-[80vh] flex flex-col">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h1 class="text-4xl font-black italic tracking-tighter">ADMIN TERMINAL</h1>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Session Secure</span>
+                    </div>
+                </div>
+                <button onclick="logout()" class="text-[10px] font-bold border border-red-500/20 text-red-500 px-4 py-2 rounded hover:bg-red-500 hover:text-white transition-all">LOGOUT</button>
+            </div>
 
-    </div>
-  </section>
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10">
-    <div class="mx-auto max-w-7xl px-4 py-4 text-sm text-slate-400 flex justify-center">
-      <p>© 2025 StratoX™</p>
-    </div>
-  </footer>
+            <div class="grid lg:grid-cols-3 gap-8 overflow-hidden">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="fui-GlassCard p-8">
+                        <h3 class="font-black italic mb-6">Global Status Override</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase block mb-2">Project Phase</label>
+                                <select id="input-state" class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm">
+                                    <option value="PRE-ALPHA">Pre-Alpha</option>
+                                    <option value="ALPHA">Alpha</option>
+                                    <option value="BETA">Beta</option>
+                                    <option value="RELEASE">Release</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase block mb-2">System Pulse</label>
+                                <select id="input-obsidian" class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm">
+                                    <option value="OPERATIONAL">Operational</option>
+                                    <option value="MAINTENANCE">Maintenance</option>
+                                    <option value="DEGRADED">Degraded</option>
+                                    <option value="OFFLINE">Offline</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="saveStatus()" class="fui-ActionButton w-full mt-8">Commit Changes</button>
+                    </div>
+                </div>
+                <div class="terminal-box h-full overflow-y-auto" id="adminLog">
+                    <p>> initializing admin_shell...</p>
+                    <p>> handshake secure...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="js/app.js"></script>
+    <footer class="py-10 border-t border-white/5 text-center">
+        <p class="text-[10px] font-bold text-slate-600 tracking-[0.3em] uppercase mb-4">© 2026 TEK STUDIOS — THE SHAFTS</p>
+        <button onclick="toggleAdmin()" class="opacity-10 hover:opacity-100 transition-opacity text-[9px] font-bold">TERMINAL_LOGIN</button>
+    </footer>
+
+    <script>
+        // PAGE SWITCHER
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            document.getElementById(`btn-${pageId}`).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // BACKEND INTERACTION
+        async function fetchStatus() {
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+                document.getElementById('ui-state').innerText = data.state;
+                document.getElementById('ui-obsidian').innerText = data.obsidian;
+                document.getElementById('ui-updated').innerText = `Last Pulse: ${data.lastUpdated}`;
+                
+                // Colors
+                document.getElementById('ui-obsidian').className = data.obsidian === 'OPERATIONAL' 
+                    ? 'text-4xl font-black italic text-green-500' 
+                    : 'text-4xl font-black italic text-red-500';
+            } catch (e) { console.log("Offline mode"); }
+        }
+
+        function toggleAdmin() {
+            document.getElementById('adminZone').classList.toggle('hidden');
+        }
+
+        async function attemptLogin() {
+            const key = document.getElementById('adminKey').value;
+            // We check the key by actually trying to "get" admin data from the server
+            // In this mockup, we'll just show the dashboard, but the SAVE will fail without the right key on the server.
+            document.getElementById('adminLogin').classList.add('hidden');
+            document.getElementById('adminDash').classList.remove('hidden');
+            logAdmin("Session started. Monitoring inputs.");
+        }
+
+        function logAdmin(msg) {
+            const log = document.getElementById('adminLog');
+            log.innerHTML += `<p>> ${msg}</p>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        async function saveStatus() {
+            const adminKey = document.getElementById('adminKey').value;
+            const newState = document.getElementById('input-state').value;
+            const newObsidian = document.getElementById('input-obsidian').value;
+
+            logAdmin(`Attempting sync: ${newState}...`);
+
+            const res = await fetch('/api/admin/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ adminKey, newState, newObsidian })
+            });
+
+            const result = await res.json();
+            if(result.success) {
+                logAdmin("Sync Successful. Cloud updated.");
+                fetchStatus();
+            } else {
+                logAdmin("CRITICAL ERROR: Invalid Auth Key. Sync aborted.");
+                alert("Security Violation: Unauthorized Key.");
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        // Init
+        fetchStatus();
+        setInterval(fetchStatus, 30000); // Auto-refresh every 30s
+    </script>
 </body>
 </html>
