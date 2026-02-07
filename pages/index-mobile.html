@@ -1,207 +1,220 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-       <div class="starfield"></div>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StratoX™</title>
-  <meta name="description" content="Details about StratoX">
-  <meta name="theme-color" content="#0d47a1">
-
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- your external stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>TEK Studios™ | Hub</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #020617;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        .fui-GlassNav {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+        }
+        .fui-GlassCard {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+        .nav-link {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+        .nav-link.active { color: #00A2FF; }
+        
+        /* Smooth Page Transitions */
+        .page-view { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
-<body class="font-sans text-white selection:bg-purple-500/30 antialiased">
-
-  <!-- NAV -->
-<header id="topNav" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md bg-white/9 border border-white/5 rounded-xl transition-all duration-500 hover:bg-white/20 hover:shadow-lg w-[90%] max-w-4xl">
-  <div class="flex h-16 items-center justify-between px-4 sm:px-6">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-2 sm:gap-3">
-      <img src="assets/logo.jpg" class="h-6 w-6 sm:h-7 sm:w-7 rounded-lg" alt="StratoX Logo" onerror="this.style.display='none'"/>
-      <span class="text-white text-xs sm:text-sm font-semibold tracking-widest">StratoX™</span>
-    </a>
-
-    <!-- Nav Links -->
-    <nav class="flex items-center gap-2 sm:gap-3 flex-shrink">
-      <a href="#features" class="text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition">Assets</a>
-      <a href="#showcase" class="text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition">Experiences</a>
-      <a href="#bugs" class="text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition">Bugs</a>
-      
-    </nav>
-  </div>
-</header>
-
-
-
-
-  <!-- HERO -->
-  <section id="hero" class="relative h-[175vh] min-h-[600px] flex items-center justify-center text-center md:text-left overflow-hidden">
-
-
-    <div class="relative z-10 flex flex-col items-center md:items-start px-6 md:px-12 max-w-5xl">
-      <h1 class="text-5xl sm:text-6xl font-extrabold leading-[1.1] reveal">StratoX™ by Shadow</h1>
-             <h2 class="text-2xl sm:text-2xl font-regular leading-[1.6] reveal">Where Quality Meets Innovation</h2>
-      <p class="mt-5 max-w-2xl text-lg text-slate-200 reveal delay-100">
-        StratoX™ makes and sells high-quality assets and games. We’re always happy to help!
-      </p>
-
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 reveal delay-200">
-        <button href="https://discord.gg/QbbnNPacMZ"class="rounded-xl action-btn .join-now,">Join now!</button>
-      </div>
-
-      <!-- Glass Cards -->
-      <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 w-full">
-        <li class="liquid-glass reveal p-4">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">About</h3>
-          <p class="text-sm text-slate-200/80">StratoX™ got founded in 2024</p>
-        </li>
-
-        <li class="liquid-glass reveal p-4 delay-100">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">Vision</h3>
-          <p class="text-sm text-slate-200/80">Crafting sleek UIs that actually pop</p>
-        </li>
-
-        <li class="liquid-glass reveal p-4 sm:col-span-2 lg:col-span-1 delay-200">
-          <div class="sheen"></div>
-          <h3 class="text-lg mb-2 font-bold">Rename</h3>
-          <p class="text-sm text-slate-200/80">
-            In August 2025, Shadow renamed the group from Paragonia Deepworks to StratoX™, unlocking a whole new vision!
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PITCH -->
-  <section class="py-20">
-    
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-10 lg:grid-cols-3 items-start">
-        <div>
-          <h2 class="text-3xl font-semibold reveal">Made to succeed</h2>
-          <p class="mt-4 text-slate-300/90 leading-relaxed reveal delay-100">
-            StratoX™ is a group specialized in realistic and high-quality models and buildings!
-          </p>
-          <div class="mt-6 flex gap-3 flex-wrap reveal delay-200">
-            <a href="#features" class="rounded-xl action-btn">Explore More</a>
-          </div>
+<body>
+    <header class="fui-GlassNav fixed top-4 left-1/2 -translate-x-1/2 z-[60] w-[95%] max-w-4xl h-14 flex items-center justify-between px-4 sm:px-8">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+            <span class="text-[10px] sm:text-xs font-black tracking-tighter uppercase">TEK STUDIOS™</span>
         </div>
+        <nav class="flex gap-4 sm:gap-8">
+            <button onclick="showPage('home')" id="btn-home" class="nav-link active">Home</button>
+            <button onclick="showPage('games')" id="btn-games" class="nav-link">Games</button>
+            <button onclick="showPage('status')" id="btn-status" class="nav-link">News</button>
+        </nav>
+    </header>
 
-        <ul class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-          <li class="liquid-glass p-4 reveal"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Realistic</h3>
-            <p class="text-sm text-slate-300/80">We aim for maximum realism with every asset and build.</p>
-          </li>
-          <li class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Projects</h3>
-            <p class="text-sm text-slate-300/80">Our newest project is the F-Hotel Remake, a full rework of the original.</p>
-          </li>
-          <li class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-            <h3 class="text-lg mb-2 font-bold">Products</h3>
-            <p class="text-sm text-slate-300/80">We work nonstop on new, high-quality products with refined UIs.</p>
-          </li>
-        </ul>
-      </div>
+    <main id="page-home" class="page-view pt-32 sm:pt-44 px-6 max-w-6xl mx-auto pb-20">
+        <div class="text-center">
+            <h1 class="text-5xl sm:text-8xl font-black italic tracking-tighter mb-4 uppercase">TEK Studios™</h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                Central command for all <span class="text-white">TEK Studios™</span> powered experiences.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="showPage('games')" class="w-full sm:w-auto px-10 py-5 rounded-xl font-black uppercase tracking-widest bg-[#00A2FF] text-black transition-transform active:scale-95">
+                    Browse Games
+                </button>
+                <a href="https://discord.gg/rUGpysHv5j" class="w-full sm:w-auto px-10 py-5 rounded-xl font-black uppercase tracking-widest bg-white/10 text-white transition-transform active:scale-95">
+                    Discord
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <main id="page-games" class="page-view hidden pt-32 px-6 max-w-6xl mx-auto pb-20">
+        <h2 class="text-3xl font-black italic mb-2 tracking-tighter uppercase">Experiences</h2>
+        <p class="text-slate-500 font-bold text-[10px] uppercase tracking-[0.3em] mb-8">Official Projects</p>
+        <div id="game-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <main id="page-status" class="page-view hidden pt-32 px-6 max-w-4xl mx-auto pb-20">
+        <h2 class="text-3xl font-black italic mb-2 tracking-tighter uppercase">News</h2>
+        <p class="text-slate-500 font-bold text-[10px] uppercase tracking-[0.3em] mb-8">Updates from CEO</p>
+        <div id="news-container" class="flex flex-col gap-4"></div>
+    </main>
+
+    <footer class="py-10 border-t border-white/5 text-center">
+        <p class="text-[9px] font-bold text-slate-600 tracking-[0.3em] uppercase">© 2026 TEK STUDIOS</p>
+    </footer>
+
+    <div id="game-modal" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden overflow-y-auto">
+        <div class="min-h-screen w-full flex items-center justify-center p-4">
+            <div id="modal-card" class="fui-GlassCard max-w-4xl w-full relative overflow-hidden">
+                <div id="modal-content" class="w-full"></div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mb-10">
-        <h2 class="text-3xl font-extrabold reveal">More Info</h2>
-        <p class="mt-3 text-slate-300 reveal delay-100">More information & details about StratoX™</p>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  <div class="liquid-glass p-4 reveal"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">F-Hotel</h3>
-    <p class="text-sm text-slate-300/80">Official remake of F-Hotel by FinnTheHuman401!</p>
-  </div>
+    <script>
+        const newsData = [{
+            title: "HUB ALPHA",
+            date: "07.02.2026",
+            desc: "The central command for all TEK Studios experiences is now officially live.",
+            type: "Announcement",
+            status: "Dev"
+        }];
 
-  <div class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Lumina™</h3>
-    <p class="text-sm text-slate-300/80">Our own elevator engine built for modularity and efficiency.</p>
-  </div>
+        const games = [
+            {
+                id: "the-hotel",
+                title: "TEK HOTEL",
+                version: "V3.56 ALPHA",
+                desc: "The remake of F-Hotel.",
+                longDesc: "The official remake of F-Hotel by FinnTheHuman401. You need a strong device to join this experience.",
+                tags: ["Realism", "Hotel"],
+                status: "Paused",
+                link: "Inactive",
+                imageurl: "https://tr.rbxcdn.com/180DAY-0c88c37d53f9ae72a9a1721c46b3250f/576/324/Image/Jpeg/noFilter",
+            },
+            {
+                id: "the-shafts",
+                title: "THE SHAFTS",
+                version: "V1.2 ALPHA",
+                desc: "The endless mineshafts",
+                longDesc: "The Shafts is a procedural vertical descent experience. Navigate through infinite levels of brutalist architecture.",
+                tags: ["Realism", "Chaos", "Horror"],
+                status: "Prototyping",
+                link: "Inactive",
+                imageurl: "https://tr.rbxcdn.com/180DAY-0c88c37d53f9ae72a9a1721c46b3250f/576/324/Image/Jpeg/noFilter",
+            }
+        ];
 
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Developers</h3>
-    <p class="text-sm text-slate-300/80">We have a small but dedicated team and are always expanding!</p>
-  </div>
-</div>
+        const statusColors = {
+            'Live': 'bg-[#00A2FF]',
+            'Alpha': 'bg-orange-500',
+            'Beta': 'bg-emerald-400',
+            'Dev': 'bg-purple-500',
+            'Paused': 'bg-gray-400',
+            'Prototyping': 'bg-fuchsia-600',
+            'Maintenance': 'bg-red-500'
+        };
 
-    </div>
-  </section>
+        function renderGames() {
+            const grid = document.getElementById('game-grid');
+            grid.innerHTML = games.map(game => `
+                <div onclick="openModal('${game.id}')" class="fui-GlassCard p-6 flex flex-col justify-between cursor-pointer group hover:bg-white/5">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-1 rounded ${statusColors[game.status] || 'bg-slate-200'}"></div>
+                            <span class="text-[12px] font-mono text-slate-500 uppercase">${game.version}</span>
+                        </div>
+                        <h3 class="text-xl font-black italic uppercase mb-2 group-hover:text-[#00A2FF]">${game.title}</h3>
+                        <p class="text-sm text-slate-400 mb-6">${game.desc}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        ${game.tags.map(tag => `<span class="px-2 py-1 bg-white/5 rounded text-[8px] font-black uppercase text-slate-500">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
 
-  <!-- SHOWCASE -->
-  <section id="showcase" class="py-20 text-center">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-extrabold reveal">Interested?</h2>
-      <p class="mt-3 text-slate-300 reveal delay-100">Feel free to join!</p>
-      <div class="mt-6 flex justify-center reveal delay-200">
-        <button class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-100 active:scale-[.98]">Join Now</button>
-      </div>
-    </div>
-  </section>
- <!-- Bugs -->
-  <section id="bugs" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mb-10">
-        <h2 class="text-3xl font-extrabold reveal">Bugs</h2>
-        <p class="mt-3 text-slate-300 reveal delay-100">Quick fixes for bugs</p>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        
-  <div class="liquid-glass p-4 reveal"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">TKR Revived Cortex</h3>
-    <p class="text-sm text-slate-300/80">Cortex is not longer supported by TKR Revived. The V2 of TKR Revived will only support MXv2!</p>
-  </div>
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = newsData.map(news => `
+                <div class="fui-GlassCard p-6 border-l-4 border-l-[#00A2FF]">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[9px] font-black text-[#00A2FF] uppercase">${news.type}</span>
+                        <span class="text-[10px] font-mono text-slate-600">${news.date}</span>
+                    </div>
+                    <h3 class="text-xl font-black italic uppercase mb-2">${news.title}</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">${news.desc}</p>
+                </div>
+            `).join('');
+        }
 
-  <div class="liquid-glass p-4 reveal delay-100"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Lumina™</h3>
-    <p class="text-sm text-slate-300/80">This elevator controller isn’t updated with every patch. Larger updates are released periodically.</p>
-  </div>
+        function openModal(gameId) {
+            const game = games.find(g => g.id === gameId);
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = `
+                <div class="p-6 sm:p-10 flex flex-col gap-6">
+                    <div class="flex justify-between items-center">
+                        <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest">${game.status}</span>
+                        <button onclick="closeModal()" class="text-[10px] font-black uppercase text-slate-500">Close</button>
+                    </div>
+                    <img src="${game.imageurl}" class="w-full h-48 object-cover rounded-xl border border-white/10" />
+                    <h2 class="text-4xl font-black italic uppercase">${game.title}</h2>
+                    <p class="text-slate-300 leading-relaxed">${game.longDesc}</p>
+                    <button disabled class="w-full py-5 rounded-xl font-black uppercase tracking-widest bg-white/5 text-slate-600 cursor-not-allowed">
+                        ${game.link === 'Inactive' ? 'Unavailable' : 'Launch'}
+                    </button>
+                </div>
+            `;
+            document.getElementById('game-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Games</h3>
-    <p class="text-sm text-slate-300/80">Bugs could happen in our games as we have a small developer team</p>
-  </div>
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">ICP</h3>
-    <p class="text-sm text-slate-300/80">Our ICP system is only maintained by Shadow. It takes time to fix stuff. At the moment we are completly recoding the base functions of it to prevent future bugs</p>
-  </div>
+        function closeModal() {
+            document.getElementById('game-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
 
-  <div class="liquid-glass p-4 reveal delay-200"><div class="sheen"></div>
-    <h3 class="text-lg mb-2 font-bold">Other products</h3>
-    <p class="text-sm text-slate-300/80">Report any other bugs in our discord server!</p>
-          <div class="mt-6 flex justify-center reveal delay-200">
-        <button href="https://discord.gg/QbbnNPacMZ"class="rounded-xl action-btn .join-now,">Report bugs!</button>
-      </div>
-  </div>
-  
-</div>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            document.getElementById(`btn-${pageId}`).classList.add('active');
+            window.scrollTo(0, 0);
+        }
 
-    </div>
-  </section>
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10">
-    <div class="mx-auto max-w-7xl px-4 py-4 text-sm text-slate-400 flex justify-center">
-      <p>© 2025 StratoX™</p>
-    </div>
-  </footer>
-
-  <script src="js/app.js"></script>
+        window.onload = () => {
+            renderGames();
+            renderNews();
+        };
+    </script>
 </body>
 </html>
