@@ -5,18 +5,18 @@ require('dotenv').config();
 
 const app = express();
 
-// Datenbank verbinden
+// DB verbinden
 connectDB();
 
 // Middleware
-app.use(cors()); // Erlaubt deiner Website den Zugriff
-app.use(express.json()); // Erlaubt das Lesen von JSON-Daten
+app.use(cors());
+app.use(express.json());
 
 // Routen registrieren
-// WICHTIG: '/api/projects' muss exakt so im Frontend stehen
+// Alles in 'projectRoutes.js' startet jetzt mit '/api/projects'
 app.use('/api/projects', require('./routes/projectRoutes'));
 
-// Test-Endpunkt für den Browser
+// Root-Check für den Browser
 app.get('/', (req, res) => res.send('Stratox-Cloud Engine ONLINE'));
 
 const PORT = process.env.PORT || 3000;
