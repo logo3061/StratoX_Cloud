@@ -7,26 +7,24 @@ const Status = require('./models/Status');
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
 
-// Datenbank-Verbindung
+// Wichtig: Zeigt auf den Ordner 'public' im Hauptverzeichnis
+app.use(express.static(path.join(__dirname, 'public')));
+
 mongoose.connect(process.env.DATABASE_URL)
-    .then(() => console.log(">> Obsidian Core: Database Connected"))
-    .catch(err => console.error(">> Database Error:", err));
+    .then(() => console.log(">> Obsidian Core: Connected"))
+    .catch(err => console.error(">> DB Error:", err));
 
-// API: Status holen
 app.get('/api/status', async (req, res) => {
     try {
         let status = await Status.findOne();
         if (!status) status = await Status.create({});
         res.json(status);
-    } catch (e) { res.status(500).json({ error: "Read Error" }); }
+    } catch (e) { res.status(500).json({ error: "Fetch error" }); }
 });
 
-// API: Status ändern (Gesichert mit ADMIN_KEY)
 app.post('/api/admin/update', async (req, res) => {
     const { adminKey, newState, newObsidian } = req.body;
-
     if (adminKey === process.env.ADMIN_KEY) {
         try {
             const updated = await Status.findOneAndUpdate({}, 
@@ -36,10 +34,13 @@ app.post('/api/admin/update', async (req, res) => {
             return res.json({ success: true, status: updated });
         } catch (e) { return res.status(500).json({ success: false }); }
     }
-    res.status(401).json({ success: false, message: "Unauthorized" });
+    res.status(401).json({ success: false });
 });
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+// Fallback für die index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`>> Server live on Port ${PORT}`));
+app.listen(PORT, () => console.log(`>> Live on Port ${PORT}`));
