@@ -1,117 +1,90 @@
- body { background: #0a0b0d; color: white; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-    
-    /* Smooth Blur Transitions */
-    .page-view {
-        animation: slideUpFade 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+/* --- Core Layout --- */
+body { 
+    background: #0a0b0d; 
+    color: white; 
+    font-family: 'Montserrat', sans-serif; 
+    overflow-x: hidden; 
+}
 
-    @keyframes slideUpFade {
-        0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(10px); }
-        100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
+.page-view {
+    animation: slideUpFade 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-    /* Glass Effect & Hover Glow */
-    .fui-GlassNav { 
-        background: rgba(15, 15, 15, 0.7); 
-        backdrop-filter: blur(20px); 
-        border: 1px solid rgba(255,255,255,0.05); 
-        border-radius: 16px; 
-        transition: all 0.4s ease;
-    }
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
 
-    .fui-GlassCard { 
-        background: rgba(255,255,255,0.02); 
-        border: 1px solid rgba(255,255,255,0.05); 
-        border-radius: 20px; 
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    }
+/* --- Glass Effects --- */
+.fui-GlassNav { 
+    background: rgba(15, 15, 15, 0.7); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 16px; 
+}
 
-    .fui-GlassCard:hover { 
-        background: rgba(255,255,255,0.05); 
-        border-color: #00A2FF; 
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 162, 255, 0.1);
-    }
+.fui-GlassCard { 
+    background: rgba(255,255,255,0.02); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 20px; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    overflow: hidden; /* Important for background images */
+}
 
-    /* Action Button "Pulse" */
-    .fui-ActionButton { 
-        background: #00A2FF; 
-            color: #000; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            padding: 16px 40px; 
-            font-size: 0.7rem; 
-            letter-spacing: 0.2em;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.4s;
-        }
+.fui-GlassCard:hover { 
+    background: rgba(255,255,255,0.05); 
+    border-color: #00A2FF; 
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 162, 255, 0.1);
+}
 
-        .fui-ActionButton:hover {
-            transform: skewX(-5deg);
-            box-shadow: -10px 0 30px rgba(0, 162, 255, 0.3);
-        }
-   .fui-ActionButton-other { 
-        background: rgb(255,255,255, 0.2); 
-            color: #ffffff; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            padding: 16px 40px; 
-            font-size: 0.7rem; 
-            letter-spacing: 0.2em;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.4s;
-        }
+/* --- Action Buttons (Cleaned) --- */
+.fui-ActionButton, .fui-ActionButton-other { 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    padding: 16px 40px; 
+    font-size: 0.7rem; 
+    letter-spacing: 0.2em;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: 0.4s;
+    display: inline-block;
+}
 
-        .fui-ActionButton-other:hover {
-            transform: skewX(-5deg);
-            box-shadow: -10px 0 30px rgba(0, 162, 255, 0.3);
-        }
+.fui-ActionButton { background: #00A2FF; color: #000; }
+.fui-ActionButton-other { background: rgba(255,255,255, 0.2); color: #fff; }
 
-    /* Active Nav Indicator */
-    .nav-link { 
-        font-size: 0.7rem; 
-        font-weight: 900; 
-        text-transform: uppercase; 
-        letter-spacing: 0.1em; 
-        opacity: 0.5; 
-        transition: 0.3s; 
-        position: relative;
-    }
-    
-    .nav-link.active { 
-        opacity: 1; 
-        color: #00A2FF; 
-    }
+.fui-ActionButton:hover, .fui-ActionButton-other:hover {
+    transform: skewX(-5deg);
+    box-shadow: -10px 0 30px rgba(0, 162, 255, 0.3);
+}
 
-    .nav-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: #00A2FF;
-        box-shadow: 0 0 10px #00A2FF;
-    }
+/* --- Navigation --- */
+.nav-link { 
+    font-size: 0.7rem; font-weight: 900; text-transform: uppercase; 
+    letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; position: relative;
+}
+.nav-link.active { opacity: 1; color: #00A2FF; }
+.nav-link.active::after {
+    content: ''; position: absolute; bottom: -5px; left: 0;
+    width: 100%; height: 2px; background: #00A2FF; box-shadow: 0 0 10px #00A2FF;
+}
 
-    /* Modal Animation */
-    #game-modal {
-        transition: opacity 0.3s ease;
-    }
-    #game-modal .fui-GlassCard {
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-    #game-modal.hidden {
-        display: none;
-        opacity: 0;
-    }
-    #game-modal.flex {
-        opacity: 1;
-    }
-    .grid-bg {
-            position: fixed;
-            inset: 0;
-            background-size: 50px 50px;
-            z-index: -1;
-            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
-        }
+/* --- Modal Transitions --- */
+#game-modal { transition: opacity 0.3s ease; }
+#game-modal.hidden { display: none; opacity: 0; }
+
+#game-modal.closing { opacity: 0; pointer-events: none; }
+#game-modal.closing .fui-GlassCard {
+    transform: scale(0.95) translateY(10px);
+    filter: blur(5px);
+}
+
+/* --- Modal Background Fixes --- */
+.modal-bg-cover {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    min-height: 80vh; /* Ensures the card has height for the image */
+    display: flex;
+    flex-direction: column;
+}

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+           <div class="starfield"></div>
 <head>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <meta charset="utf-8" />
@@ -9,7 +11,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script>
+// Live shows the color blue (#00A2FF)
+// Beta shows the color emerald-400
+// Alpha shows the color orange-500
+// Pre-Alpha shows the color yellow-400
+
+// Planning shows the color indigo-400
+// Concept shows the color slate-500
+// Prototyping shows the color fuchsia-600
+
+// Paused shows the color gray-400
+// Cancelled shows the color zinc-800
+
+// Dev shows the color purple-500
+// Maintenance shows the color red-500
+    
+            // --- DATA SECTION: Easy to modify/add/remove ---
+        const newsData = [
+    {
+        title: "HUB ALPHA",
+        date: "07.02.2026",
+        desc: "The central command for all TEK Studios experiences is now officially live. Explore our projects through the new interface.",
+        type: "Announcement",
+        status: "Dev" // Nutzt dein Farbsystem (Live = Blau)
+    },
+];
+        const games = [
+            {
+        id: "the-hotel",
+        title: "TEK HOTEL",
+        version: "V3.56 ALPHA",
+        desc: "The remake of F-Hotel ",
+        longDesc: "The official remake of F-Hotel by FinnTheHuman401. You need a strong device to join this experience",
+        tags: ["Realism", "Hotel"],
+        status: "Paused",
+        link: "Inactive",
+        imageurl: "https://tr.rbxcdn.com/180DAY-0c88c37d53f9ae72a9a1721c46b3250f/576/324/Image/Jpeg/noFilter",
+    },
+{
+        id: "the-shafts",
+        title: "THE SHAFTS",
+        version: "V1.2 ALPHA",
+        desc: "The endless mineshafts",
+        longDesc: "The Shafts is a procedural vertical descent experience. Navigate through infinite levels of brutalist architecture while managing oxygen and avoiding 'Obsidian' entities. Every floor is uniquely generated to ensure total unpredictability.",
+        tags: ["Realism", "Chaos", "Horror"],
+        status: "Prototyping",
+        link: "Inactive",
+        imageurl: "https://tr.rbxcdn.com/180DAY-0c88c37d53f9ae72a9a1721c46b3250f/576/324/Image/Jpeg/noFilter",
+    },
+        ];
+</script>
 <body>
+    
     <div class="grid-bg"></div>
     <header class="fui-GlassNav fixed top-6 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-5xl h-16 flex items-center justify-between px-8">
         
@@ -20,7 +74,7 @@
         <nav class="flex gap-8">
             <button onclick="showPage('home')" id="btn-home" class="nav-link active">Home</button>
             <button onclick="showPage('games')" id="btn-games" class="nav-link">Games</button>
-            <button onclick="showPage('status')" id="btn-status" class="nav-link">Status</button>
+            <button onclick="showPage('status')" id="btn-status" class="nav-link">News</button>
         </nav>
     </header>
 
@@ -31,8 +85,14 @@
                 Central command for all <span class="text-white">TEK Studios™</span> powered experiences.
             </p>
             <div class="flex gap-4 justify-center md:justify-start">
-                <button onclick="showPage('games')" class="fui-ActionButton">Browse Games</button>
-                <a href="https://discord.gg/rUGpysHv5j" class="fui-ActionButton-other">Discord</a>
+<button 
+    onclick="showPage('games')" 
+    class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all bg-[#00A2FF]/100 text-black hover:bg-[#00A2FF]/100 hover:scale-[1.02] active:scale-[0.98]">
+    Browse Games
+</button>
+<a href="https://discord.gg/rUGpysHv5j" class="flex items-center justify-center w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all bg-white/10 text-white hover:bg-white/20 hover:scale-[1.02] active:scale-[0.98]">
+    Discord
+</a>
             </div>
         </div>
     </main>
@@ -45,49 +105,17 @@
     </main>
 
 <main id="page-status" class="page-view hidden pt-44 px-6 max-w-5xl mx-auto pb-20">
-    <h2 class="text-4xl font-black italic mb-2 tracking-tighter uppercase text-center md:text-left">Studio News</h2>
-    <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12 text-center md:text-left">Pulse of the Multiverse</p>
+    <h2 class="text-4xl font-black italic mb-2 tracking-tighter uppercase text-center md:text-left">News</h2>
+    <p class="text-slate-500 font-bold text-xs uppercase tracking-[0.3em] mb-12 text-center md:text-left">News directly from our CEO!</p>
     
     <div id="news-container" class="flex flex-col gap-4"></div>
 </main>
 
     <footer class="py-10 border-t border-white/5 text-center">
-        <p class="text-[10px] font-bold text-slate-600 tracking-[0.3em] uppercase mb-4">© 2026 TEK STUDIOS — MULTIVERSE</p>
+        <p class="text-[10px] font-bold text-slate-600 tracking-[0.3em] uppercase mb-4">© 2026 TEK STUDIOS</p>
     </footer>
 
     <script>
-        // --- DATA SECTION: Easy to modify/add/remove ---
-        const newsData = [
-    {
-        title: "HUB ALPHA",
-        date: "07.02.2026",
-        desc: "The central command for all TEK Studios experiences is now officially live. Explore our projects through the new interface.",
-        type: "Announcement",
-        status: "Alpha" // Nutzt dein Farbsystem (Live = Blau)
-    },
-];
-        const games = [
-{
-        id: "the-shafts",
-        title: "THE SHAFTS",
-        version: "V1.2 ALPHA",
-        desc: "The endless mineshafts",
-        longDesc: "The Shafts is a procedural vertical descent experience. Navigate through infinite levels of brutalist architecture while managing oxygen and avoiding 'Obsidian' entities. Every floor is uniquely generated to ensure total unpredictability.",
-        tags: ["Realism", "Chaos", "Horror"],
-        status: "Pre-Alpha",
-        link: "Inactive"
-    },
-    {
-        id: "the-hotel",
-        title: "TEK HOTELS",
-        version: "V3",
-        desc: "The remake of F-Hotel",
-        longDesc: "TEK Studios remade the original F-Hotel from FinnTheHuman401!",
-        tags: ["Realism", "Chaos", "Horror"],
-        status: "Maintenance",
-        link: "Inactive"
-    },
-        ];
 function renderNews() {
     const newsContainer = document.getElementById('news-container');
     if (!newsContainer) return;
@@ -102,13 +130,40 @@ function renderNews() {
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[9px] font-black uppercase tracking-[0.3em] ${
-                        news.status === 'Live' ? 'text-[#00A2FF]' : 
-                        news.status === 'Beta' ? 'text-emerald-400' : 
-                        news.status === 'Alpha' ? 'text-orange-500' : 
-                        news.status === 'Pre-Alpha' ? 'text-yellow-400' : 
-                        news.status === 'Dev' ? 'text-purple-500' : 
-                        news.status === 'Maintenance' ? 'text-red-500' : 
-                        'text-slate-500'
+// Live shows the color blue (#00A2FF)
+news.status === 'Live' ? 'text-[#00A2FF]' : 
+
+// Beta shows the color emerald-400
+news.status === 'Beta' ? 'text-emerald-400' : 
+
+// Alpha shows the color orange-500
+news.status === 'Alpha' ? 'text-orange-500' : 
+
+// Pre-Alpha shows the color yellow-400
+news.status === 'Pre-Alpha' ? 'text-yellow-400' : 
+
+// Prototyping shows the color fuchsia-600
+news.status === 'Prototyping' ? 'text-fuchsia-600' : 
+
+// Concept shows the color slate-500
+news.status === 'Concept' ? 'text-slate-500' : 
+
+// Planning shows the color indigo-400
+news.status === 'Planning' ? 'text-indigo-400' : 
+
+// Paused shows the color gray-400
+news.status === 'Paused' ? 'text-gray-400' : 
+
+// Cancelled shows the color zinc-800
+news.status === 'Cancelled' ? 'text-zinc-800' : 
+
+// Dev shows the color purple-500
+news.status === 'Dev' ? 'text-purple-500' : 
+
+// Maintenance shows the color red-500
+news.status === 'Maintenance' ? 'text-red-500' : 
+
+'text-slate-200' // Default fallback color
                     }">${news.type}</span>
                     <h3 class="text-2xl font-black italic tracking-tighter uppercase mt-1">${news.title}</h3>
                 </div>
@@ -119,64 +174,122 @@ function renderNews() {
     `).join('');
 }
         // --- RENDER LOGIC ---
+function launchRoblox(event, placeId) {
+    // This stops the click from "bubbling" up to the parent div
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    
+    console.log("Launching game:", placeId);
+    window.location.href = `https://www.roblox.com/games/${placeId}`;
+}
+
       // --- MODAL LOGIC ---
 function openModal(gameId) {
     const game = games.find(g => g.id === gameId);
     if (!game) return;
 
     const content = document.getElementById('modal-content');
+    
+    const statusColor = 
+game.status === 'Live' ? 'bg-[#00A2FF]' : 
+game.status === 'Beta' ? 'bg-emerald-400' : 
+game.status === 'Alpha' ? 'bg-orange-500' : 
+game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
+// Neu: Vor Pre-Alpha Stadien
+game.status === 'Prototyping' ? 'bg-fuchsia-600' : 
+game.status === 'Concept' ? 'bg-slate-500' : 
+game.status === 'Planning' ? 'bg-indigo-400' : 
+// Neu: Paused & Weiteres
+game.status === 'Paused' ? 'bg-gray-400' : 
+game.status === 'Cancelled' ? 'bg-zinc-800' : 
+// Vorhandene
+game.status === 'Dev' ? 'bg-purple-500' : 
+game.status === 'Maintenance' ? 'bg-red-500' : 
+'bg-gray-200' // Fallback
+
+    // 1. Apply Styles for full coverage
+    Object.assign(content.style, {
+        backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.95)), url('${game['imageurl'] || game['imageurl']}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'local', // 'local' ensures the bg scrolls with the content
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    });
+
     content.innerHTML = `
-        <div class="mb-10">
- <div class="flex justify-between items-start mb-6">
-                    <div class="mb-6">
-                        <div class="w-10 h-1 mb-2 ${
-        game.status === 'Live' ? 'bg-[#00A2FF]' : 
-        game.status === 'Beta' ? 'bg-emerald-400' : 
-        game.status === 'Alpha' ? 'bg-orange-500' : 
-        game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
-        game.status === 'Dev' ? 'bg-purple-500' : 
-        game.status === 'Maintenance' ? 'bg-red-500' : 
-                            'bg-slate-600'
-                        }"></div>
-                        <span class="text-[9px] font-mono uppercase tracking-widest block text-slate-500 group-hover:text-white transition-colors">
-                            ${game.status}
-                        </span>
+        <div class="relative z-10 w-full flex-grow p-6 md:p-12 flex flex-col justify-center">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="mb-10">
+<div class="flex justify-between items-center mb-10 w-full"><div class="bg-black/60 backdrop-blur-xl px-4 py-2.5 rounded-full border border-white/10 shadow-2xl flex items-center gap-3"><div class="w-6 rounded h-1 ${statusColor}"></div><span class="text-[9px] font-mono uppercase tracking-widest text-slate-300 leading-none">${game.status}</span></div><button onclick="closeModal()" class="text-white/50 hover:text-white font-black uppercase text-[10px] tracking-widest bg-black/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 transition-all">Close [ESC]</button></div>
+                    
+                    <h2 class="text-5xl md:text-6xl font-black italic tracking-tighter uppercase leading-tight text-white drop-shadow-2xl">
+                        ${game.title}
+                    </h2>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-end">
+                    <div>
+                        <p class="text-slate-100 leading-relaxed text-lg mb-8 drop-shadow-md max-w-xl">
+                            ${game.longDesc || game.desc}
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            ${game.tags.map(tag => `
+                                <span class="px-3 py-1 bg-black/40 backdrop-blur-md rounded text-[10px] font-black uppercase text-white border border-white/10">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
                     </div>
-                    <span class="text-[14px] font-mono text-slate-500 uppercase tracking-widest">${game.version}</span>
+
+                        <div class="bg-black/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-2xl">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Development Status</h4>
+                            <p class="text-sm text-slate-200">
+                                This project is currently in <b class="text-white">${game.status}</b>. 
+                                Features are subject to change during the development cycle.
+                            </p>
+                        </div>
+                        
+                        <button 
+${game.link === 'Inactive' 
+    ? 'disabled' 
+    : `onclick="launchRoblox(${game.link})"`}
+
+                            class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all 
+                            ${game.link === 'Inactive' ? 'bg-white/5 text-slate-700 cursor-not-allowed' : 'bg-[#00A2FF] text-black hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-[#00A2FF]/40'}">
+                            ${game.link === 'Inactive' ? 'Unavailable' : 'Open'}
+                            
+                        </button>
+                        <span class="text-[14px] font-mono text-slate-400 uppercase tracking-widest">${game.version}</span>
+                    </div>
                 </div>
-            <span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.4em] block mb-2">${game.status} | ${game.version}</span>
-            <h2 class="text-5xl md:text-7xl font-black italic italic tracking-tighter uppercase">${game.title}</h2>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-12">
-            <div>
-                <p class="text-slate-400 leading-relaxed text-lg mb-8">${game.longDesc || game.desc}</p>
-                <div class="flex flex-wrap gap-2">
-                    ${game.tags.map(tag => `<span class="px-3 py-1 bg-white/5 rounded text-[10px] font-black uppercase text-slate-400 border border-white/5">${tag}</span>`).join('')}
-                </div>
-            </div>
-            <div class="space-y-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Development Status</h4>
-                    <p class="text-sm">This project is currently in <b class="text-white">${game.status}</b>. Features are subject to change during the development cycle.</p>
-                </div>
-                <button 
-                    ${game.link === 'Inactive' ? 'disabled' : `onclick="window.location.href='${game.link}'"`}
-                    class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all 
-                    ${game.link === 'Inactive' ? 'bg-white/5 text-slate-700 cursor-not-allowed' : 'bg-[#00A2FF] text-black hover:scale-[1.02]'}">
-                    ${game.link === 'Inactive' ? 'Unavailable' : 'Launch Experience'}
-                </button>
             </div>
         </div>
     `;
     
     document.getElementById('game-modal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Scrollen verhindern
+    document.body.style.overflow = 'hidden'; 
 }
 
 function closeModal() {
-    document.getElementById('game-modal').classList.add('hidden');
-    document.body.style.overflow = 'auto';
+    const modal = document.getElementById('game-modal');
+    
+    // Klasse für Animation hinzufügen
+    modal.classList.add('closing');
+
+    // Wir warten exakt die Zeit der CSS-Transition ab
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('closing');
+        document.body.style.overflow = 'auto';
+        
+        // Optional: Inhalt leeren für Performance
+        document.getElementById('modal-content').innerHTML = '';
+    }, 100); // 300ms passend zum CSS unten
 }
 
 // Schließen mit ESC-Taste
@@ -190,14 +303,26 @@ function renderGames() {
             <div>
                 <div class="flex justify-between items-start mb-6">
                     <div class="mb-6">
-                        <div class="w-10 h-1 mb-2 ${
-        game.status === 'Live' ? 'bg-[#00A2FF]' : 
-        game.status === 'Beta' ? 'bg-emerald-400' : 
-        game.status === 'Alpha' ? 'bg-orange-500' : 
-        game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
-        game.status === 'Dev' ? 'bg-purple-500' : 
-        game.status === 'Maintenance' ? 'bg-red-500' : 
-                            'bg-slate-600'
+                        <div class="w-10 h-1 rounded mb-2 ${
+// --- Status-Farben Übersicht ---
+game.status === 'Live' ? 'bg-[#00A2FF]' : 
+game.status === 'Beta' ? 'bg-emerald-400' : 
+game.status === 'Alpha' ? 'bg-orange-500' : 
+game.status === 'Pre-Alpha' ? 'bg-yellow-400' : 
+
+// Vor Pre-Alpha Stadien
+game.status === 'Prototyping' ? 'bg-fuchsia-600' : 
+game.status === 'Concept' ? 'bg-slate-500' : 
+game.status === 'Planning' ? 'bg-indigo-400' : 
+
+// Paused & Weiteres
+game.status === 'Paused' ? 'bg-gray-400' : 
+game.status === 'Cancelled' ? 'bg-zinc-800' : 
+
+// Vorhandene Basis-Status
+game.status === 'Dev' ? 'bg-purple-500' : 
+game.status === 'Maintenance' ? 'bg-red-500' : 
+'bg-slate-200' // Default / Fallback
                         }"></div>
                         <span class="text-[9px] font-mono uppercase tracking-widest block text-slate-500 group-hover:text-white transition-colors">
                             ${game.status}
@@ -211,21 +336,44 @@ function renderGames() {
                     ${game.tags.map(tag => `<span class="px-2 py-1 bg-white/5 rounded text-[8px] font-black uppercase text-slate-500">${tag}</span>`).join('')}
                 </div>
             </div>
-            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest text-center">Click for details</p>
+            <button 
+// Inside your renderGames() mapping logic:
+<button 
+    ${game.link === 'Inactive' 
+        ? 'disabled' 
+        : `onclick="launchRoblox(event, '${game.link}')"`}
+    class="w-full py-5 rounded-xl font-black uppercase tracking-widest transition-all 
+    ${game.link === 'Inactive' ? 'bg-white/5 text-slate-700 cursor-not-allowed' : 'bg-[#00A2FF] text-black hover:scale-[1.02]'}">
+    ${game.link === 'Inactive' ? 'Unavailable' : 'Open'}
+</button>
+            </button>
         </div>
     `).join('');
 }
 
         // --- PAGE SWITCHER ---
-        function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            
-            document.getElementById(`page-${pageId}`).classList.remove('hidden');
-            const btn = document.getElementById(`btn-${pageId}`);
-            if(btn) btn.classList.add('active');
-            window.scrollTo(0,0);
-        }
+       function showPage(pageId) {
+    const pages = document.querySelectorAll('.page-view');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    pages.forEach(p => {
+        p.classList.add('hidden');
+        // Reset animation by removing and re-adding class if necessary
+        p.style.animation = 'none';
+        p.offsetHeight; // trigger reflow
+        p.style.animation = null;
+    });
+    
+    navLinks.forEach(l => l.classList.remove('active'));
+    
+    const targetPage = document.getElementById(`page-${pageId}`);
+    targetPage.classList.remove('hidden');
+    
+    const btn = document.getElementById(`btn-${pageId}`);
+    if(btn) btn.classList.add('active');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
         // Initialize Hub
         window.onload = () => {
@@ -235,13 +383,13 @@ function renderGames() {
         };
         
     </script>
-    <div id="game-modal" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-4 md:p-10">
-    <div class="fui-GlassCard max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-16 relative border-blue-500/20">
-        <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-500 hover:text-white font-black uppercase text-[10px] tracking-widest">Close [ESC]</button>
+    <div id="game-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4 md:p-0">
+    <div id="modal-card" class="fui-GlassCard max-w-5xl w-full max-h-[90vh] overflow-y-auto relative border border-white/10 rounded-3xl shadow-2xl">
         
-        <div id="modal-content">
+        <div id="modal-content" class="min-h-full w-full">
             </div>
     </div>
+</div>
 </div>
 </body>
 </html>
