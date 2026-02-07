@@ -6,38 +6,31 @@ require('dotenv').config();
 app.use(express.json());
 app.use(express.static('public'));
 
-// Mock Database (In a real app, use MongoDB or PostgreSQL)
+// This is your persistent state
 let projectStatus = {
     state: "PRE-ALPHA",
     obsidian: "OPERATIONAL",
     lastUpdated: new Date().toLocaleString()
 };
 
-// GET current status
-app.get('/api/status', (req, res) => {
-    res.json(projectStatus);
-});
+// Public API
+app.get('/api/status', (req, res) => res.json(projectStatus));
 
-// POST update status (The Secure Part)
+// Secure Admin API
 app.post('/api/admin/update', (req, res) => {
     const { adminKey, newState, newObsidian } = req.body;
 
-    // Check against secret key stored on Render's Environment Variables
-    if (adminKey === process.env.ADMIN_SECRET_KEY) {
+    // Checks the password safely on the server
+    if (adminKey === process.env.ADMIN_KEY) {
         projectStatus.state = newState;
         projectStatus.obsidian = newObsidian;
         projectStatus.lastUpdated = new Date().toLocaleString();
-        console.log("Status updated by Admin");
-        return res.json({ success: true, status: projectStatus });
+        return res.json({ success: true });
     }
-
-    res.status(401).json({ success: false, message: "Invalid Unauthorized Key" });
+    res.status(401).json({ success: false });
 });
 
-// Route for all pages (Serving the main HTML)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server live on port ${PORT}`));
