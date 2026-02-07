@@ -1,27 +1,22 @@
+// server.js im Hauptverzeichnis
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db'); // Deine funktionierende db.js
+const connectDB = require('./config/db');
 require('dotenv').config();
 
 const app = express();
 
-// Datenbank starten
-connectDB(); 
+// Middleware (Wichtig für die Kommunikation mit der Website)
+app.use(cors()); // Erlaubt den Zugriff von deiner Website-Domain
+app.use(express.json()); // Erlaubt das Lesen von JSON-Daten
 
-// Middleware
-app.use(cors()); // Erlaubt deiner Website den Zugriff
-app.use(express.json()); // Erlaubt dem Server, JSON-Daten zu lesen
+// Datenbankverbindung
+connectDB();
 
-// DIE ROUTE: Das hier behebt dein "Not Found" Problem
-// Es verbindet den Ordner "routes" mit dem Pfad "/api/projects"
-app.use('/api/projects', require('./routes/projectRoutes'));
+// ROUTEN AKTIVIEREN
+// Dieser Pfad muss exakt mit deinem Frontend übereinstimmen
+app.use('/api/projects', require('./routes/projectRoutes')); 
 
-// Test-Route (Nur zum Prüfen, ob der Server überhaupt lebt)
-app.get('/', (req, res) => {
-    res.send('Stratox-Cloud Engine is ONLINE');
-});
-
+// Startet den Server auf dem von Render zugewiesenen Port
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`[SYSTEM] Engine running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server läuft auf Port ${PORT}`));
