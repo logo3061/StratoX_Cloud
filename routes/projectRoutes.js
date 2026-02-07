@@ -29,5 +29,14 @@ router.patch('/:id', auth, async (req, res) => {
         res.status(500).json({ error: "UPDATE_FAILED" });
     }
 });
-
+// Add this to projectRoutes.js to allow creating new entries
+router.post('/', auth, async (req, res) => {
+    try {
+        const newProject = new Project(req.body);
+        await newProject.save();
+        res.status(201).json(newProject);
+    } catch (err) {
+        res.status(400).json({ error: "Creation failed. ID might already exist." });
+    }
+});
 module.exports = router;
